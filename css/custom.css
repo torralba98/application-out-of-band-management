@@ -1,0 +1,38 @@
+html *
+{
+   font-size: 17px;
+   font-family: Arial;
+}
+
+/* custom style for login page */
+.card {
+    padding: 50px;
+    max-width: 400px;
+    height: auto;
+    margin: 10px auto;
+    text-align: center;
+}
+/* /end custom style for login page */
+
+.container-fluid{
+    width:100%;
+    padding-right:15px;
+    padding-left:15px;
+    margin-right:auto;
+    margin-left:auto;
+    margin-top: 210px;}
+
+body {
+    background-color: rgb(224, 224, 224);
+}
+
+p {
+    margin-top: 40px;
+    margin-bottom: 1px;
+}
+
+ h1, h2, h3 {
+    font-size: 20px;
+    font-weight: bold;
+    margin-top: 10px;
+}

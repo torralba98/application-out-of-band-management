@@ -1,0 +1,169 @@
+/* https://codepen.io/g3kdigital/pen/Bdvhe */
+
+*{
+	padding:0;
+	margin:0;
+	-webkit-box-sizing:border-box;
+	-moz-box-sizing:border-box;
+	box-sizing:border-box;
+    -webkit-transition: all ease .5s;
+    transition: all ease .5s;
+}
+
+html, body
+{
+    text-align: center;
+    font-size: 16px;
+    height: 100%;
+    min-height: 100%;
+	 font-family:
+     'Noto Sans',
+     segoe ui,
+     sans-serif;
+}
+
+button, a.btn
+{
+  min-width: 8rem;
+  max-width: 11rem;
+  display: inline-block;
+  background-color: #E6E6E6;
+  margin: 0.8rem 0.3rem 0;
+  border: none;
+  color: #4e4e4e;
+  padding: 0.5rem 1.8rem 0.5rem 0.8rem;
+  font-size: 1rem;
+  font-weight: bold;
+  border-radius: 0.6rem;
+  text-transform: Uppercase;
+  background-image: url('https://i.imgur.com/E98PKMa.png');
+  background-repeat: no-repeat;
+  background-size: auto 70%;
+  background-position: 92% center;
+  box-shadow: 0 0.1rem 0 #4e4e4e;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.popup
+{
+  display: none;
+  position: absolute;
+  top: 75%;
+  z-index:1;
+	right: 0%;
+  min-width: 100%;
+  min-width: 100vw;
+  min-height: 20vh;
+  overflow: hidden;
+}
+
+.popup::before
+{
+  content:'';
+  display: block;
+  height: 100%;
+  transition: all 1s ease;
+  animation: aparece .5s 1 ease-out;
+}
+
+.popup div
+{
+  width: 60%;
+  display: inline-block;
+  color: white;
+  padding: 1rem 3rem;
+  margin: auto;
+  border-radius: 0.5rem;
+  background-color: #458182;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform:
+    translateX(-50%)
+    translateY(-50%);
+  animation: sube .5s 1 ease-out;
+}
+
+.popup h4
+{
+  text-transform: uppercase;
+}
+
+.popup p
+{
+  font-size: 0.9rem;
+  padding: 0.5rem 0 0;
+}
+
+.popup a.btn
+{
+  font-size: 0.8rem;
+}
+
+[id^="ancla"]
+{
+  display: none;
+}
+
+#pop_up:target ~ .popup
+{
+  display:block;
+}
+
+#ancla2:target ~ .popup
+{
+  display: none;
+}
+
+#pop_up:target ~ .popup::before
+{
+  opacity: 1;
+}
+
+@keyframes sube
+{
+  0%
+  {
+    top: 80%;
+    opacity: 0;
+  }
+  100%
+  {
+    top: 50%;
+    opacity: 1;
+  }
+}
+
+@keyframes aparece
+{
+  0%
+  {
+    opacity: 0;
+  }
+  100%
+  {
+    opacity: 1;
+  }
+}
+
+.contenedor
+{
+  background: rgb(30,0,0);
+  min-height: 100vh;
+  margin: 0 auto;
+  max-width: 1280px;
+  min-width: 768px;
+  -webkit-box-shadow: 0 0 2rem ;
+  box-shadow: 0 0 2rem ;
+  padding-top:4rem;
+}
+
+.nombre-parte
+{
+
+  color: crimson;
+  padding: 0.5rem;
+  position: absolute;
+  width: 100vw;
+}

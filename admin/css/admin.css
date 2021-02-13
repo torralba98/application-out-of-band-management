@@ -1,0 +1,72 @@
+html *
+{
+   font-size: 17px;
+   font-family: Arial;
+}
+
+.menuHK{
+  height: 54px;
+  width: 1200px;
+  background-color:#009975;
+  text-align: center;
+  border-radius: 10px;
+}
+
+.menuHK ul{
+   list-style: none;
+   display: inline-block;
+   padding:18px;
+}
+
+.menuHK ul li{
+    float: left;
+    margin-top:-4px;
+}
+
+.menuHK ul li a {
+    color: white;
+    font-weight: bold;
+    text-decoration: none;
+    font-size: 16px;
+    padding: 20px;
+}
+
+.menuHK ul li a:hover{
+  background-color: #008062;
+}
+
+.menuNew{
+  height: 54px;
+  background-color:#287233;
+  text-align: center;
+  margin-left: 350px;
+  border-radius: 12px;
+}
+
+.menuNew ul{
+   list-style: none;
+   display: inline-block;
+   padding:20px;
+}
+
+.menuNew ul li{
+    float: left;
+    margin-top:-4px;
+}
+
+.menuNew ul li a {
+    color: white;
+    font-weight: bold;
+    text-decoration: none;
+    font-size: 18px;
+    padding: 18px;
+}
+
+.menuNew ul li a:hover{
+  background-color: #1b4b22;
+}
+
+textarea {
+    height: 100%;
+    width: 100%;
+}

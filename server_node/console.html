@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<link rel="icon" type="image/png" href="/images/icon.png" />
+
+    
+<header>
+ 
+  <script> var web_url = "http://10.51.1.44";</script>
+
+  <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top" id="mainNav">
+  <div style="margin-bottom: 0px; margin-top: 0px;" class="container-fluid">
+    <a class="navbar-brand js-scroll-trigger">
+     <img src="/images/logoUDC.png" width="330" height="48">
+   </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarResponsive">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item active">
+          <a class="nav-link" href="index.html">
+            <div id="welcome">
+            <strong id="welcome"></strong>
+          </div>
+            </a>
+            </li>
+            <li class='nav-item'>
+                <a class='nav-link' href= web_url + '/inicio'>Volver al Inicio</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href= web_url + '/logout">Cerrar Sesión</a>
+            </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+</header>
+<br>
+<br>
+<br>
+
+	<head>
+    <meta charset="utf-8">
+		<title>Consola</title>
+
+    <link rel="stylesheet" href="serverConsole/css/console.css">
+    <link rel="stylesheet" href="css/alerts.css">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+
+		<!-- Required meta tags -->
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  </head>
+
+  <style>
+  .pageCover {
+    position:fixed;
+    z-index:0;
+    background-color:rgba(0,0,0,.25);
+    width:100vw;
+    height:100vh;
+    top:0;
+    left:0;
+  }
+  </style>
+
+	<body background="/images/background.jpg" onload="setJsPort();">
+ 
+    <script src="jquery/jquery-3.5.1.min.js"></script>
+    <script id="socket"></script>
+    <script id='client'></script>
+
+    <script>
+
+      var posUrlInit =  window.location.href.indexOf("/terminal");
+
+      var url = window.location.href.substring(0,posUrlInit);
+      var posUserIni = window.location.href.indexOf("username=") + 9;
+      var posUserFin=  window.location.href.indexOf("&token");
+
+      var username = window.location.href.substring(posUserIni, posUserFin);
+
+      var posTokenInit=  window.location.href.indexOf("token") + 6;
+
+      var token = window.location.href.substring(posTokenInit);
+
+      var posPortIni = window.location.href.indexOf("port=") + 5;
+      var posPortFin =  window.location.href.indexOf("&username");
+
+      var port = window.location.href.substring(posPortIni,posPortFin);
+
+      var posDeviceIni = window.location.href.indexOf("/terminal") + 9;
+      var posDeviceFin = window.location.href.indexOf("?port");
+
+      var device = window.location.href.substring(posDeviceIni, posDeviceFin);
+
+      //document.getElementById('jquery').src = url + ":" + port + "/jquery-3.5.1.min.js";
+      document.getElementById('client').src = url + ":" + port + "/client.js";
+      document.getElementById('socket').src = url + ":" + port + "/socket.io/socket.io.js";
+
+      $(document).ready(function() {
+          const boton = document.getElementById("enviar");
+          $("form").keypress(function(e) {
+            if (e.which == 13 && boton.disabled == true) {
+              return false;
+            }
+          });
+        });
+
+      $(function () {
+          setTimeout(function(){
+            var socket = io(web_url + ':' + port + '/');
+          }, 1500);
+          const boton = document.getElementById("enviar");
+          $('form').submit(function(e){
+            if ($('#comando').val() == "exit")
+              boton.setAttribute('disabled', "true");
+            e.preventDefault(); // prevents page reloading
+            sendCommand($('#comando').val());
+            $('#comando').val('');
+            return false;
+          });
+          });
+
+        function setJsPort() {
+          stablishPortConnection(port, username, web_url);
+          getName();
+        }
+
+	 document.getElementById("welcome").innerHTML = "<strong>¡Bienvenido/a</strong> " + username + "<strong>!</strong>";
+        
+
+        function loadCommandForm() {
+
+            var form = document.createElement('form');
+            form.innerHTML = `<input id='comando' autocomplete='off' placeholder='Introducir comando...' /> <input id='enviar' type='submit' value='Enviar'>`;
+            document.getElementById('commandConsole').appendChild(form);
+
+        }
+
+    </script>
+
+
+    <script type="text/javascript"> $('p').append(Math.random()); $(window).bind({ beforeunload: function(ev) { ev.preventDefault(); }, unload: function(ev) { ev.preventDefault(); } }); </script>
+
+		<div id='principal' class="container">
+		<div class='alert alert-success mt-4' role='alert'>
+        <i><h1 id="title"></h1></i>
+
+        <ul id="messages"></ul>
+        <ul id="console"></ul>
+        <div id="commandConsole">
+          <script> loadCommandForm(); </script>
+       </div>
+
+		</div>
+    </div>
+	</body>
+<br>
+<br>
+<div id="alertaObserv">
+</div>
+  <footer>
+
+    <nav class="navbar navbar-expand-sm bg-light justify-content-center fixed-bottom">
+
+      <p style="text-align:center; margin-bottom: 0px; margin-top: 0px;color:black" ><FONT SIZE=2 FACE="verdana"><i><b>Copyright © 2020.</b> All rights reserved to A. Torralba & F. Novoa & C. Dafonte.</b></i></FONT</p>
+
+    </nav>
+
+  </footer>
+</html>

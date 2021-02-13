@@ -1,0 +1,32 @@
+Options +FollowSymLinks -MultiViews
+
+RewriteEngine on
+
+RewriteRule ^$ /index [R=301,L]
+RewriteRule ^/$ /index [R=301,L]
+
+## hide .php extension
+# To externally redirect /dir/foo.php to /dir/foo
+RewriteCond %{THE_REQUEST} ^[A-Z]{3,}\s([^.]+)\.php [NC]
+RewriteRule ^ %1 [R=302,L]
+
+# To internally forward /dir/foo to /dir/foo.php
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME}.php -f
+RewriteRule ^(.*?)/?$ $1.php [L]
+
+RewriteCond %{REQUEST_URI}  ^/console(.*)        [NC]
+RewriteCond %{QUERY_STRING} ^pidConsole=(.*)       [NC]
+RewriteCond %{QUERY_STRING} ^user=(.*)       [NC]
+RewriteCond %{QUERY_STRING} ^port=(.*)       [NC]
+RewriteCond %{QUERY_STRING} ^token=(.*)       [NC]
+RewriteCond %{QUERY_STRING} ^deviceName=(.*)       [NC]
+RewriteCond %{QUERY_STRING} transport=websocket    [NC]
+RewriteRule /(.*)           ws://10.51.1.44:$3/$1/$2/$3/$4/$5 [P,L]
+
+RewriteCond %{REQUEST_URI}  ^/terminal(.*)        [NC]
+RewriteCond %{QUERY_STRING} transport=websocket    [NC]
+RewriteCond %{QUERY_STRING} ^port=(.*)       [NC]
+RewriteCond %{QUERY_STRING} ^username=(.*)       [NC]
+RewriteCond %{QUERY_STRING} ^token=(.*)       [NC]
+RewriteRule /(.*)           ws://10.51.1.44:$1/console.html/$1/$2/$3 [P,L]
