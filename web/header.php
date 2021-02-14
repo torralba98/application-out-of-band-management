@@ -8,7 +8,7 @@
     if ($url == '/forbidden') {
       $username = "";
     }
-   ?>
+  ?>
 
   <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top" id="mainNav">
     <div style="margin-bottom: 0px; margin-top: 0px;" class="container-fluid">

@@ -20,32 +20,25 @@ var device = "";
 var deviceId = "";
 var deviceName = "";
 var deviceOff = false;
+var userNum = 0;
+var timeout = true;
 
 var deviceMessage = '';
 var deviceMessageAux = '';
 const installationCompleted = "--- System Configuration Dialog ---";
-var alreadyCompleted = false; //OJO ESTO, SI PONER FALSE CADA VEZ QUE SE REINICIE SERVER ES RECOMENDABLE REINICIAR ROUTER PARA EVITAR PROBLEMAS
+var alreadyCompleted = false; 
 var canSend = false;
-var invalidInput = "% Invalid input detected at '^' marker.";
 const unrecognizedCommand = "% Unrecognized command";
 const validCommand = "Invalid input detected. Please, introduce it correctly."
 var commandSend = 'NO_COMMAND_SEND_YET';
 var oneWarn = false;
 var connectionRejected = false;
 
-var sess;
-var userNum = 0;
-var timeout = true;
-var 
-
-
-Off = true;
 var commandsWithNoResponse = 0;
 var loadTime = null;
 var logger = null;
 var loggerAttempIntrusion = null;
 
-//Faltaría verificar cuando el puerto está ON/OFF
 var port = new SerialPort(process.argv[2], {
     baudRate: parseInt(process.argv[4]),
     databits: parseInt(process.argv[5]),
@@ -65,7 +58,7 @@ function printLongString (line) { //Divide long strings into short ones
   return line;
 };
 
-parser.on("data", (line) => { //Detects when device sends a message
+parser.on("data", (line) => { //Detects when network device sends a message
  deviceOff = false;
 
   if (deviceMessage.includes("\""))
@@ -92,7 +85,7 @@ parser.on("data", (line) => { //Detects when device sends a message
                 deviceMessage = deviceMessage.split("\b").join("");
                 io.sockets.emit('messages', deviceMessage);
                 console.log(deviceMessage);
-                  deviceMessage = '';
+                deviceMessage = '';
               }
             }
           } else if (!oneWarn){
@@ -169,7 +162,7 @@ function shutdownServer (){
       con.query(sql, function (err, result) {
         if (err) throw err;
         else
-            exec("kill -9 "+pidCons, (error, data, getter) => { //Close node Server
+            exec("kill -9 "+pidCons, (error, data, getter) => { //Close current Node server process
                 if(error){
                   console.log("error",error.message);
                   conn.close();
@@ -254,7 +247,7 @@ io.on('connection', (socket) => {
       if (commandsWithNoResponse >= 5){
         var currentTime = (new Date().getTime()) / 1000;
           if (currentTime - loadTime >= 60) { //Passed more than 1 minute
-            io.sockets.emit('messages', 'El device parece no responder. Si esto sigue así, contacta con el profesorado. <br>');
+            io.sockets.emit('messages', 'El dispositivo parece no responder. Si esto sigue así, contacta con el profesorado. <br>');
             loadTime = null;
           }
       }
@@ -353,7 +346,7 @@ function parseDate(date){
     return time;
 }
 
-cron.schedule('5 * * * * *', function() { //Checking if user is absento to close server
+cron.schedule('5 * * * * *', function() { //Checking if user is absent to close server
 
   console.log('Checking if user is absent...');
 
@@ -372,7 +365,7 @@ if (serverOn) {
 		    }
 	     }
 	  });
-   } else {
+} else {
 	var sql = "SELECT server_up_time from device WHERE Id = '" + deviceId + "'" ;
 	  con.query(sql, function (err, result) {
 	    if (err) throw err;
@@ -385,8 +378,8 @@ if (serverOn) {
 		      shutdownServer();
 		    }
 	    }
-       });
-     }
+    });
+  }
 	
 });
 
@@ -420,10 +413,10 @@ server.listen(process.argv[3], function(){
 });
 
 var con = mysql.createConnection({
-  host: "localhost",
-  user: "root",
-  password: "<password>",
-  database: "db"
+  host: "<HOST>",
+  user: "<USERNAME>",
+  password: "<PASSWORD>",
+  database: "DATABASE_NAME"
 });
 
 con.connect(function(err) {

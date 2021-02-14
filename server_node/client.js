@@ -97,9 +97,9 @@ async function serverOff() {
                       <div id='dialog-bg'>
                         <div id='dialog-title'>AVISO</div>
                         <div id='dialog-description'>Se ha cerrado el server debido a que has estado más de 10 minutos inactivo. Serás redireccionado en 5 segundos...</div>
-                        </div>
                       </div>
-                      <div class=' pageCover'></div>`;
+                    </div>
+                    <div class=' pageCover'></div>`;
 
   document.getElementById('principal').appendChild(html);
 

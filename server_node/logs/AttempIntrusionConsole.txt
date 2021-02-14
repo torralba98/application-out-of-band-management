@@ -1,6 +1,0 @@
-El usuario admin intentó entrar en el dispositivo COM6. (10/12/2020 03:55:46h.)
-El usuario  intentó entrar en el dispositivo COM6. (10/12/2020 04:01:16h.)
-El usuario admin intentó entrar en el dispositivo Router CISCO . (12/12/2020 03:39:49h.)
-El usuario admin intentó entrar en el dispositivo . (28/01/2021 22:06:43h.)
-El usuario admin intentó entrar en el dispositivo . (28/01/2021 22:07:15h.)
-El usuario a.torralba intentó entrar en el dispositivo . (29/01/2021 06:38:27h.)

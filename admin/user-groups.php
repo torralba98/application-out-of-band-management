@@ -1,48 +1,49 @@
 <?php
-header('Content-Type: text/html; charset=UTF-8');
-session_start();
+  header('Content-Type: text/html; charset=UTF-8');
+  session_start();
 
-include '../web_config/configuration_properties.php';
+  include '../web_config/configuration_properties.php';
 
-$conn = mysqli_connect($dbhost, $dbuser, $dbpass, $dbname);
+  $conn = mysqli_connect($dbhost, $dbuser, $dbpass, $dbname);
 
-if (!$conn) {
-  die("Connection failed: " . mysqli_connect_error());
-}
+  if (!$conn) {
+    die("Connection failed: " . mysqli_connect_error());
+  }
 
-if (isset($_SESSION['username'])){
-  if (time() - $_SESSION['start'] > 3600) {
-       session_unset($_SESSION['username']);
-       session_destroy();
-       header("Location: ../index");
-       die();
-  } else {
+  if (isset($_SESSION['username'])){
+    if (time() - $_SESSION['start'] > 3600) {
+         session_unset($_SESSION['username']);
+         session_destroy();
+         header("Location: ../index");
+         die();
+    } else {
 
-    $username = $_SESSION['username'];
-    $isAdm = mysqli_query($conn, "SELECT is_admin FROM user WHERE username = '$username'");
+      $username = $_SESSION['username'];
+      $isAdm = mysqli_query($conn, "SELECT is_admin FROM user WHERE username = '$username'");
 
-    while ($isAdmRow = mysqli_fetch_array($isAdm)) {
+      while ($isAdmRow = mysqli_fetch_array($isAdm)) {
 
-      if ($isAdmRow[0] == 0){
-        header('Location: ../index');
-        die() ;
+        if ($isAdmRow[0] == 0){
+          header('Location: ../index');
+          die() ;
+        }
       }
     }
+  }else{
+  header('Location: ../index');
+   die() ;
   }
-}else{
-header('Location: ../index');
- die() ;
-}
 
-mysqli_close($conn);
+  mysqli_close($conn);
 
-$root = realpath($_SERVER["DOCUMENT_ROOT"]);
+  $root = realpath($_SERVER["DOCUMENT_ROOT"]);
 
 ?>
 
 <!doctype html>
-<html lang="en">
+<html lang="es">
 	<head>
+
    <title>Panel Admin ~ Administrar Grupos Usuarios</title>
    <link rel="icon" type="image/png" href="/images/icon.png" />
    <?php include "$root/web/header.php"; ?>
@@ -53,9 +54,30 @@ $root = realpath($_SERVER["DOCUMENT_ROOT"]);
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-		<!-- Bootstrap CSS -->
-			<link rel="stylesheet" href="../css/bootstrap.min.css">
-    </head>
+		<!-- CSS -->
+		<link rel="stylesheet" href="../css/bootstrap.min.css">
+
+    <style>
+      .pageCover {
+        position:fixed;
+        z-index:0;
+        background-color:rgba(0,0,0,.25);
+        width:100vw;
+        height:100vh;
+        top:0;
+        left:0;
+      }
+    </style>
+
+    <script>
+
+      function updateView(user_group) {
+           window.location = "user-groups?user_group=" + user_group;
+      }
+
+    </script>
+  
+  </head>
 
 	<body background="/images/background.jpg">
 
@@ -70,26 +92,6 @@ $root = realpath($_SERVER["DOCUMENT_ROOT"]);
 
 		<div class="container">
 
-    <script>
-
-      function updateView(user_group) {
-           window.location = "user-groups?user_group=" + user_group;
-      }
-
-    </script>
-
-    <style>
-    .pageCover {
-      position:fixed;
-      z-index:0;
-      background-color:rgba(0,0,0,.25);
-      width:100vw;
-      height:100vh;
-      top:0;
-      left:0;
-    }
-    </style>
-
 		<div id='all' class='alert alert-success mt-4' role='alert'>
       <div><a id='volver' href='registered-users' class='large green button'>Volver</a></div>
           <FONT SIZE=4><i><p><a>Aquí podrás administrar los <u>Grupos de Usuarios</u>.</u></a></p></i></font>
@@ -100,7 +102,7 @@ $root = realpath($_SERVER["DOCUMENT_ROOT"]);
 
                   <?php
                     // Connection info. file
-                    include '../configDevices/connectionSetup.php';
+                    include '../web_config/configuration_properties.php';
 
                     // Connection variables
                     $conn = mysqli_connect($dbhost, $dbuser, $dbpass, $dbname);
@@ -316,19 +318,25 @@ $root = realpath($_SERVER["DOCUMENT_ROOT"]);
                     }
                     echo "<br>";
                   }
-                mysqli_close($conn);
+
+                  mysqli_close($conn);
+                  
                 ?>
 
-              </p>
-              <br>
-
+            </p>
+          <br>
+      </div>
 		</div>
 
-    <nav class='menuNew container'><ul>
-    <li><a href="new-user-group">Crear Grupo</a>|</li>
-    <li><a href="user-group-summary">Ver Grupos Existentes</a></li>
-    </ul></nav>
+    <nav class='menuNew container'>
+      <ul>
+        <li><a href="new-user-group">Crear Grupo</a>|</li>
+        <li><a href="user-group-summary">Ver Grupos Existentes</a></li>
+      </ul>
+    </nav>
 
 	</body>
+
   <?php include "$root/web/footer.php"; ?>
+  
 </html>

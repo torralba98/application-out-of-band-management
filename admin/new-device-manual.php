@@ -1,60 +1,75 @@
 <?php
-header('Content-Type: text/html; charset=UTF-8');
-session_start();
+  header('Content-Type: text/html; charset=UTF-8');
+  session_start();
 
-include '../web_config/configuration_properties.php';
+  include '../web_config/configuration_properties.php';
 
-$conn = mysqli_connect($dbhost, $dbuser, $dbpass, $dbname);
+  $conn = mysqli_connect($dbhost, $dbuser, $dbpass, $dbname);
 
-if (!$conn) {
-  die("Connection failed: " . mysqli_connect_error());
-}
+  if (!$conn) {
+    die("Connection failed: " . mysqli_connect_error());
+  }
 
-if (isset($_SESSION['username'])){
-  if (time() - $_SESSION['start'] > 3600) {
-       session_unset($_SESSION['username']);
-       session_destroy();
-       header("Location: ../index");
-       die();
-  } else {
+  if (isset($_SESSION['username'])){
+    if (time() - $_SESSION['start'] > 3600) {
+         session_unset($_SESSION['username']);
+         session_destroy();
+         header("Location: ../index");
+         die();
+    } else {
 
-    $username = $_SESSION['username'];
-    $isAdm = mysqli_query($conn, "SELECT is_admin FROM user WHERE username = '$username'");
+      $username = $_SESSION['username'];
+      $isAdm = mysqli_query($conn, "SELECT is_admin FROM user WHERE username = '$username'");
 
-    while ($isAdmRow = mysqli_fetch_array($isAdm)) {
+      while ($isAdmRow = mysqli_fetch_array($isAdm)) {
 
-      if ($isAdmRow[0] == 0){
-        header('Location: ../index');
-        die() ;
+        if ($isAdmRow[0] == 0){
+          header('Location: ../index');
+          die() ;
+        }
       }
     }
+  }else{
+  header('Location: ../index');
+   die() ;
   }
-}else{
-header('Location: ../index');
- die() ;
-}
 
-mysqli_close($conn);
+  mysqli_close($conn);
 
-$root = realpath($_SERVER["DOCUMENT_ROOT"]);
+  $root = realpath($_SERVER["DOCUMENT_ROOT"]);
 ?>
 
 <!doctype html>
-<html lang="en">
+<html lang="es">
+
 	<head>
-   <title>Panel Admin ~ Crear Dispositivo Manualmente</title>
-   <link rel="icon" type="image/png" href="/images/icon.png" />
-   <?php include "$root/web/header.php"; ?>
-   <link rel="stylesheet" href="../css/alerts.css">
-   <link rel="stylesheet" href="../admin/css/admin.css">
+
+    <title>Panel Admin ~ Crear Dispositivo Manualmente</title>
+    <link rel="icon" type="image/png" href="/images/icon.png" />
+    <?php include "$root/web/header.php"; ?>
+    <link rel="stylesheet" href="../css/alerts.css">
+    <link rel="stylesheet" href="../admin/css/admin.css">
 
 		<!-- Required meta tags -->
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-		<!-- Bootstrap CSS -->
-			<link rel="stylesheet" href="../css/bootstrap.min.css">
-      </head>
+		<!-- CSS -->
+		<link rel="stylesheet" href="../css/bootstrap.min.css">
+
+    <style>
+      .pageCover {
+        position:fixed;
+        z-index:0;
+        background-color:rgba(0,0,0,.25);
+        width:100vw;
+        height:100vh;
+        top:0;
+        left:0;
+      }
+    </style>
+  
+  </head>
 
 	<body background="/images/background.jpg">
 
@@ -69,19 +84,7 @@ $root = realpath($_SERVER["DOCUMENT_ROOT"]);
 
 		<div class="container">
 
-    <style>
-    .pageCover {
-      position:fixed;
-      z-index:0;
-      background-color:rgba(0,0,0,.25);
-      width:100vw;
-      height:100vh;
-      top:0;
-      left:0;
-    }
-    </style>
-
-		<div id='all' class='alert alert-success mt-4' role='alert'>
+		  <div id='all' class='alert alert-success mt-4' role='alert'>
           <div><a id='volver' href='new-device' class='large green button'>Volver</a></div>
           <FONT SIZE=4><i><p id='title'><a>Aquí podrás crear un <u>dispositivo manualmente</u>.</u></a></p></i></font>
               <br>
@@ -152,8 +155,11 @@ $root = realpath($_SERVER["DOCUMENT_ROOT"]);
 
               </p>
               <br>
+        </div>
 		</div>
 
 	</body>
+
   <?php include "$root/web/footer.php"; ?>
+  
 </html>

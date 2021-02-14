@@ -1,4 +1,0 @@
-admin is connected. (10/02/2021 23:15:19h.)
-admin used command: ENTER (10/02/2021 23:15:23h.)
-admin used command: help (10/02/2021 23:15:26h.)
-admin is disconnected. (10/02/2021 23:15:56h.)

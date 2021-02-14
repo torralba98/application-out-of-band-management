@@ -1,52 +1,52 @@
 <?php
-header('Content-Type: text/html; charset=UTF-8');
-session_start();
+  header('Content-Type: text/html; charset=UTF-8');
+  session_start();
 
-include '../web_config/configuration_properties.php';
+  include '../web_config/configuration_properties.php';
 
-$conn = mysqli_connect($dbhost, $dbuser, $dbpass, $dbname);
+  $conn = mysqli_connect($dbhost, $dbuser, $dbpass, $dbname);
 
-if (!$conn) {
-  die("Connection failed: " . mysqli_connect_error());
-}
+  if (!$conn) {
+    die("Connection failed: " . mysqli_connect_error());
+  }
 
-if (isset($_SESSION['username'])){
-  if (time() - $_SESSION['start'] > 3600) {
-       session_unset($_SESSION['username']);
-       session_destroy();
-       header("Location: ../index");
-       die();
-  } else {
+  if (isset($_SESSION['username'])){
+    if (time() - $_SESSION['start'] > 3600) {
+         session_unset($_SESSION['username']);
+         session_destroy();
+         header("Location: ../index");
+         die();
+    } else {
 
-    $username = $_SESSION['username'];
-    $isAdm = mysqli_query($conn, "SELECT is_admin FROM user WHERE username = '$username'");
+      $username = $_SESSION['username'];
+      $isAdm = mysqli_query($conn, "SELECT is_admin FROM user WHERE username = '$username'");
 
-    while ($isAdmRow = mysqli_fetch_array($isAdm)) {
+      while ($isAdmRow = mysqli_fetch_array($isAdm)) {
 
-      if ($isAdmRow[0] == 0){
-        header('Location: ../index');
-        die() ;
+        if ($isAdmRow[0] == 0){
+          header('Location: ../index');
+          die() ;
+        }
       }
     }
+  }else{
+  header('Location: ../index');
+   die() ;
   }
-}else{
-header('Location: ../index');
- die() ;
-}
 
-mysqli_close($conn);
+  mysqli_close($conn);
 
-$root = realpath($_SERVER["DOCUMENT_ROOT"]);
+  $root = realpath($_SERVER["DOCUMENT_ROOT"]);
 ?>
 
 <!doctype html>
-<html lang="en">
+<html lang="es">
+
 	<head>
+
 		<title>Panel Admin ~ Administrar Asignaciones Usuarios / Dispositivos</title>
     <link rel="icon" type="image/png" href="/images/icon.png" />
     <?php include "$root/web/header.php"; ?>
-    <link rel="stylesheet" href="../css/alerts.css">
-    <link rel="stylesheet" href="../admin/css/admin.css">
 
 		<!-- Required meta tags -->
 		<meta charset="utf-8">
@@ -54,19 +54,34 @@ $root = realpath($_SERVER["DOCUMENT_ROOT"]);
 
 		<!-- Bootstrap CSS -->
 		<link rel="stylesheet" href="../css/bootstrap.min.css">
-    </head>
+    <link rel="stylesheet" href="../css/alerts.css">
+    <link rel="stylesheet" href="../admin/css/admin.css">
 
-  <style>
-  .pageCover {
-    position:fixed;
-    z-index:0;
-    background-color:rgba(0,0,0,.25);
-    width:100vw;
-    height:100vh;
-    top:0;
-    left:0;
-  }
-  </style>
+    <style>
+      .pageCover {
+        position:fixed;
+        z-index:0;
+        background-color:rgba(0,0,0,.25);
+        width:100vw;
+        height:100vh;
+        top:0;
+        left:0;
+      }
+    </style>
+
+    <script>
+
+      function updateView(user_group) {
+           window.location = "assignments?user_group=" + user_group;
+      }
+
+      function createAsign() {
+        document.getElementById('create').removeAttribute("hidden");
+      }
+
+    </script>
+
+  </head>
 
  <body background="/images/background.jpg">
 
@@ -81,20 +96,14 @@ $root = realpath($_SERVER["DOCUMENT_ROOT"]);
 
 		<div class="container">
 
-    <script>
-
-      function updateView(user_group) {
-           window.location = "assignments?user_group=" + user_group;
-      }
-
-    </script>
-
-		<div class='alert alert-success mt-4' role='alert'>
+		  <div class='alert alert-success mt-4' role='alert'>
 						<FONT SIZE=4><i><p><a>Aquí podrás crear nuevas <u>asignaciones entre Grupos de Usuarios y Grupos de Dispositivos.</u></a></p></i></font>
               <br>
+
                 <?php
+
                   // Connection info. file
-                  include '../configDevices/connectionSetup.php';
+                  include '../web_config/configuration_properties.php';
 
                   // Connection variables
                   $conn = mysqli_connect($dbhost, $dbuser, $dbpass, $dbname);
@@ -108,30 +117,22 @@ $root = realpath($_SERVER["DOCUMENT_ROOT"]);
                   $result = mysqli_query($conn, "SELECT Id FROM user_group WHERE device_group_id_assigned IS NULL
                                                  ORDER BY id ASC");
 
-                echo "<form action='' method='post'>";
-                if (mysqli_num_rows($result)==0)
-                   echo "<label id='label'><b> <p style='color:red'>Todos los <u>Grupos de Usuarios</u> ya tienen asignado un <u>Grupo de Dispositivos</u>.</p></b></label>";
-                else {
-                 echo "<label id='label'>Seleccionar <b>Grupo de Usuarios: </b> </label> ";
-                 echo "<select id='device'; name='device'; style='width:200px'; onchange='updateView(this.options[this.selectedIndex].value);'>";
-                 echo "<option> Seleccione grupo... </option>";
+                  echo "<form action='' method='post'>";
+                  if (mysqli_num_rows($result)==0)
+                     echo "<label id='label'><b> <p style='color:red'>Todos los <u>Grupos de Usuarios</u> ya tienen asignado un <u>Grupo de Dispositivos</u>.</p></b></label>";
+                  else {
+                   echo "<label id='label'>Seleccionar <b>Grupo de Usuarios: </b> </label> ";
+                   echo "<select id='device'; name='device'; style='width:200px'; onchange='updateView(this.options[this.selectedIndex].value);'>";
+                   echo "<option> Seleccione grupo... </option>";
 
-                  while ($row = mysqli_fetch_array($result)) {
-                    printf("<option>Grupo%s</option>", $row[0]);
+                    while ($row = mysqli_fetch_array($result)) {
+                      printf("<option>Grupo%s</option>", $row[0]);
+                    }
                   }
-                }
                 ?>
 
               </select>
               </form>
-
-              <script>
-
-                function createAsign() {
-                  document.getElementById('create').removeAttribute("hidden");
-                }
-
-              </script>
 
                 <?php
 
@@ -217,18 +218,24 @@ $root = realpath($_SERVER["DOCUMENT_ROOT"]);
                       }
                     }
                   }
-                mysqli_close($conn);
+
+                  mysqli_close($conn);
+
                 ?>
 
               </p>
-              <br>
-
+            <br>
+      </div>
 		</div>
 
-    <nav class='menuNew container'><ul>
-    <li><a href="existing-assigns">Administrar Asignaciones Existentes</a></li>
-    </ul></nav>
+    <nav class='menuNew container'>
+      <ul>
+        <li><a href="existing-assigns">Administrar Asignaciones Existentes</a></li>
+      </ul>
+    </nav>
 
 	</body>
+
   <?php include "$root/web/footer.php"; ?>
+  
 </html>

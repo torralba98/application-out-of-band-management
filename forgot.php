@@ -230,11 +230,11 @@
                            echo "<div class='pageCover'></div>";
                         }
                         
-                  // Close connection
-                  mysqli_close($conn2);
-                  }
-                  }
-                  }
+                     // Close connection
+                     mysqli_close($conn2);
+                     }
+                    }
+                   }
                   }
                  }
                 } else {
@@ -254,7 +254,6 @@
               </form>
 
             <?php
-
 
               if($_SERVER["REQUEST_METHOD"] == "POST" and isset($_POST['submit1'])){
 

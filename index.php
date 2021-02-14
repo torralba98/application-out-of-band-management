@@ -1,6 +1,7 @@
 <?php
   header('Content-Type: text/html; charset=UTF-8');
   session_start();
+  
   if (isset($_SESSION['username'])){
     if (time() - $_SESSION['start'] < 3600)
           header('Location: inicio');

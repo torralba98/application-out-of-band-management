@@ -7,7 +7,7 @@
   require 'PHPMailer/SMTP.php';
 
   // Include config file
-require_once "./web_config/configuration_properties.php";
+  require_once "./web_config/configuration_properties.php";
 
   // Connection variables
   $conn = mysqli_connect($dbhost, $dbuser, $dbpass, $dbname);
@@ -25,7 +25,7 @@ require_once "./web_config/configuration_properties.php";
 ?>
 
 <!doctype html>
-<html lang="en">
+<html lang="es">
   
   <head>
     

@@ -317,64 +317,64 @@
 		</script>
 		<?php
 
-						$init2 = mysqli_query($conn, "SELECT username FROM user WHERE username = '$username' AND user_group_id IS NOT NULL ORDER BY username DESC");
+			$init2 = mysqli_query($conn, "SELECT username FROM user WHERE username = '$username' AND user_group_id IS NOT NULL ORDER BY username DESC");
 
-						include "./web_config/configuration_properties.php";
-						$devices = simplexml_load_file($web_url."/web_config/devices_info.xml");
+			include "./web_config/configuration_properties.php";
+			$devices = simplexml_load_file($web_url."/web_config/devices_info.xml");
 
-						if (!empty($init2) && mysqli_num_rows($init2) == 0)
-							 echo "<p style='margin-left: 2em; color:red'> <br><b>Todavía no tienes ningún <u>Grupo de Dispositivos</u> asignado.</b><br>";
+			if (!empty($init2) && mysqli_num_rows($init2) == 0)
+				 echo "<p style='margin-left: 2em; color:red'> <br><b>Todavía no tienes ningún <u>Grupo de Dispositivos</u> asignado.</b><br>";
+			else {
+						echo "<FONT SIZE=4><p><a><i><b>DISPOSITIVOS ACCESIBLES</b><i></a></p></FONT><br>";
+						echo "<div><a id='actualizar' href='inicio' class='btn btn-primary btn-lg active'>Actualizar disp.</a></div>";
+
+						$result = mysqli_query($conn, "SELECT d.Id, username, in_use FROM user u JOIN user_group ug ON u.user_group_id=ug.id JOIN device_group dg ON ug.device_group_id_assigned=dg.id JOIN device d ON dg.id=d.device_group_id WHERE u.username = '$username' AND in_use = 'NO'");
+
+						printf ("<form action='' method='post'>");
+						if (mysqli_num_rows($result)==0)
+							 echo "<p style='margin-left: 2em; color:red'> No hay ningún <u>dispositivo libre</u>.<br><br>";
 						else {
-									echo "<FONT SIZE=4><p><a><i><b>DISPOSITIVOS ACCESIBLES</b><i></a></p></FONT><br>";
-									echo "<div><a id='actualizar' href='inicio' class='btn btn-primary btn-lg active'>Actualizar disp.</a></div>";
 
-									$result = mysqli_query($conn, "SELECT d.Id, username, in_use FROM user u JOIN user_group ug ON u.user_group_id=ug.id JOIN device_group dg ON ug.device_group_id_assigned=dg.id JOIN device d ON dg.id=d.device_group_id WHERE u.username = '$username' AND in_use = 'NO'");
-
-									printf ("<form action='' method='post'>");
-									if (mysqli_num_rows($result)==0)
-										 echo "<p style='margin-left: 2em; color:red'> No hay ningún <u>dispositivo libre</u>.<br><br>";
-									else {
-
-										while ($row = mysqli_fetch_array($result)) {
-											$flagExist = false;
-											$description = "- (Este dispositivo no tiene ningún comentario adicional)";
-											foreach($devices as $device)
-												if ($device->idDb == $row[0]) {
-													$flagExist = true;
-													$description = "- (".$device->description.")";
-													$deviceName = $device->name;
-												}
-
-												if ($flagExist){
-													echo "<form action='' method='post'>";
-																	echo "<p style='margin-left: 2em'><b> • $deviceName &nbsp-</b>&nbsp&nbsp;";
-																	echo "<input style='background-color:red;' name='namedevice' value='$deviceName' hidden/>";
-																	echo "<input type='submit' id='entrarCons$deviceName' class='large green button' name='enterConsole' value='Entrar a la Consola    '/><br>";
-																	echo "&nbsp;&nbsp;&nbsp;&nbsp; <label style='padding-top: 8px;'>$description</label>";
-													echo "</form><br>";
-												}
-										}
+							while ($row = mysqli_fetch_array($result)) {
+								$flagExist = false;
+								$description = "- (Este dispositivo no tiene ningún comentario adicional)";
+								foreach($devices as $device)
+									if ($device->idDb == $row[0]) {
+										$flagExist = true;
+										$description = "- (".$device->description.")";
+										$deviceName = $device->name;
 									}
 
-									if($_SERVER['REQUEST_METHOD'] == "POST" and isset($_POST['enterConsole'])) {
-										  initiateServer($conn, $_POST['namedevice'], $username);
-									}
-
-									echo "<br><br><FONT SIZE=4><p><a><i><b>DISPOSITIVOS NO ACCESIBLES</b><i></a></p></FONT><br>";
-
-									$result = mysqli_query($conn, "SELECT d.Id, used_by FROM user u JOIN user_group ug ON u.user_group_id=ug.id JOIN device_group dg ON ug.device_group_id_assigned=dg.id JOIN device d ON d.device_group_id=dg.id WHERE u.username = '$username' AND in_use = 'YES'");
-									if (mysqli_num_rows($result)==0)
-										 echo "<p style='margin-left: 2em; color:red'> No hay ningún <u>dispositivo en uso</u>.<br><br>";
-
-									while ($row = mysqli_fetch_array($result)) {
-										foreach($devices as $device)
-											if ($device->idDb == $row[0]) {
-												$deviceName = $device->name;
-											}
-										printf("<p style='margin-left: 2em'> • El dispositivo <b>$deviceName</b> está siendo usado ahora mismo por el usuario <b>%s</b>.<br>", $row[1]);
+									if ($flagExist){
+										echo "<form action='' method='post'>";
+														echo "<p style='margin-left: 2em'><b> • $deviceName &nbsp-</b>&nbsp&nbsp;";
+														echo "<input style='background-color:red;' name='namedevice' value='$deviceName' hidden/>";
+														echo "<input type='submit' id='entrarCons$deviceName' class='large green button' name='enterConsole' value='Entrar a la Consola    '/><br>";
+														echo "&nbsp;&nbsp;&nbsp;&nbsp; <label style='padding-top: 8px;'>$description</label>";
+										echo "</form><br>";
 									}
 							}
-					}
+						}
+
+						if($_SERVER['REQUEST_METHOD'] == "POST" and isset($_POST['enterConsole'])) {
+							  initiateServer($conn, $_POST['namedevice'], $username);
+						}
+
+						echo "<br><br><FONT SIZE=4><p><a><i><b>DISPOSITIVOS NO ACCESIBLES</b><i></a></p></FONT><br>";
+
+						$result = mysqli_query($conn, "SELECT d.Id, used_by FROM user u JOIN user_group ug ON u.user_group_id=ug.id JOIN device_group dg ON ug.device_group_id_assigned=dg.id JOIN device d ON d.device_group_id=dg.id WHERE u.username = '$username' AND in_use = 'YES'");
+						if (mysqli_num_rows($result)==0)
+							 echo "<p style='margin-left: 2em; color:red'> No hay ningún <u>dispositivo en uso</u>.<br><br>";
+
+						while ($row = mysqli_fetch_array($result)) {
+							foreach($devices as $device)
+								if ($device->idDb == $row[0]) {
+									$deviceName = $device->name;
+								}
+							printf("<p style='margin-left: 2em'> • El dispositivo <b>$deviceName</b> está siendo usado ahora mismo por el usuario <b>%s</b>.<br>", $row[1]);
+						}
+				}
+		}
 
 
 

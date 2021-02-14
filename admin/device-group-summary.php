@@ -1,47 +1,49 @@
 <?php
-header('Content-Type: text/html; charset=UTF-8');
-session_start();
+  header('Content-Type: text/html; charset=UTF-8');
+  session_start();
 
-include '../web_config/configuration_properties.php';
+  include '../web_config/configuration_properties.php';
 
-$conn = mysqli_connect($dbhost, $dbuser, $dbpass, $dbname);
+  $conn = mysqli_connect($dbhost, $dbuser, $dbpass, $dbname);
 
-if (!$conn) {
-  die("Connection failed: " . mysqli_connect_error());
-}
+  if (!$conn) {
+    die("Connection failed: " . mysqli_connect_error());
+  }
 
-if (isset($_SESSION['username'])){
-  if (time() - $_SESSION['start'] > 3600) {
-       session_unset($_SESSION['username']);
-       session_destroy();
-       header("Location: ../index");
-       die();
-  } else {
+  if (isset($_SESSION['username'])){
+    if (time() - $_SESSION['start'] > 3600) {
+         session_unset($_SESSION['username']);
+         session_destroy();
+         header("Location: ../index");
+         die();
+    } else {
 
-    $username = $_SESSION['username'];
-    $isAdm = mysqli_query($conn, "SELECT is_admin FROM user WHERE username = '$username'");
+      $username = $_SESSION['username'];
+      $isAdm = mysqli_query($conn, "SELECT is_admin FROM user WHERE username = '$username'");
 
-    while ($isAdmRow = mysqli_fetch_array($isAdm)) {
+      while ($isAdmRow = mysqli_fetch_array($isAdm)) {
 
-      if ($isAdmRow[0] == 0){
-        header('Location: ../index');
-        die() ;
+        if ($isAdmRow[0] == 0){
+          header('Location: ../index');
+          die() ;
+        }
       }
     }
+  }else{
+  header('Location: ../index');
+   die() ;
   }
-}else{
-header('Location: ../index');
- die() ;
-}
 
-mysqli_close($conn);
+  mysqli_close($conn);
 
-$root = realpath($_SERVER["DOCUMENT_ROOT"]);
+  $root = realpath($_SERVER["DOCUMENT_ROOT"]);
 ?>
 
 <!doctype html>
-<html lang="en">
+<html lang="es">
+
 	<head>
+
 		<title>Panel Admin ~ Grupos de Dispositivos Existentes</title>
     <link rel="icon" type="image/png" href="/images/icon.png" />
     <?php include "$root/web/header.php"; ?>
@@ -50,11 +52,20 @@ $root = realpath($_SERVER["DOCUMENT_ROOT"]);
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-		<!-- Bootstrap CSS -->
+		<!-- CSS -->
     <link rel="stylesheet" href="../admin/css/admin.css">
     <link rel="stylesheet" href="../css/bootstrap.min.css">
     <link rel="stylesheet" href="../css/alerts.css">
-	</head>
+
+    <script>
+
+      function updateView(user) {
+           window.location = "/admin-pan?user=" + user;
+      }
+
+    </script>
+	
+  </head>
 
 	<body background="/images/background.jpg">
 
@@ -69,20 +80,14 @@ $root = realpath($_SERVER["DOCUMENT_ROOT"]);
 
 		<div class="container">
 
-    <script>
-
-      function updateView(user) {
-           window.location = "/admin-pan?user=" + user;
-      }
-
-    </script>
-
-		<div class='alert alert-success mt-4' role='alert'>
+		  <div class='alert alert-success mt-4' role='alert'>
           <div><a id='volver' href='device-groups' class='large green button'>Volver</a></div>
 						<FONT SIZE=4><i><p><a>Aquí podrás ver un <u>resumen</u> de la distribución en <u>grupos</u> de todos los dispositivos existentes.</a></p></i></font>
+               
                 <?php
+
                   // Connection info. file
-                  include '../configDevices/connectionSetup.php';
+                  include '../web_config/configuration_properties.php';
 
                   // Connection variables
                   $conn = mysqli_connect($dbhost, $dbuser, $dbpass, $dbname);
@@ -123,12 +128,16 @@ $root = realpath($_SERVER["DOCUMENT_ROOT"]);
                 </select>
 
                 <?php
-                mysqli_close($conn);
+
+                  mysqli_close($conn);
+
                 ?>
 
               </p>
-
+      </div>
 		</div>
 	</body>
+
   <?php include "$root/web/footer.php"; ?>
+  
 </html>
