@@ -2,7 +2,7 @@
   header('Content-Type: text/html; charset=UTF-8');
   session_start();
 
-  include '../web_config/configuration_properties.php';
+  include_once '../web_config/configuration_properties.php';
 
   $conn = mysqli_connect($dbhost, $dbuser, $dbpass, $dbname);
 
@@ -119,9 +119,6 @@
                   echo "&nbsp;&nbsp;<input id='searchBt' type='submit' value='Click aquí'></p>";
                   echo "</form>";
                 }
-
-                if (!$flag)
-                  echo "<FONT color=red SIZE=4><i><p><a><b>¡UPS! Parece que por el momento no existe ningún log...</b></a></p></i></font>";
 
                 if($_SERVER['REQUEST_METHOD'] == "POST" and isset($_POST['logdevice'])) {
                     $device = $_POST['logdevice'];

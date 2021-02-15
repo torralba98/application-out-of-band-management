@@ -44,4 +44,4 @@ CREATE TABLE device
  CONSTRAINT device_groups_cf FOREIGN KEY (device_group_id) REFERENCES device_group(Id)
 );
  
-INSERT INTO user (username,email,password,verified,is_admin) VALUES ('admin','<E-MAIL>',md5('<PASSWORD>'),'YES',1);
+INSERT INTO user (username,email,password,verified,is_admin) VALUES ('admin','emailprueba@prueba.es',md5('prueba7'),'YES',1);

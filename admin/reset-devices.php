@@ -151,7 +151,7 @@
 
           ?>
         <br>
-        <p>¿Prefieres resetear un dispositivo en concreto? <a href="admin/reset-device" data-toggle="collapse" aria-expanded="false" aria-controls="collapse">Click <u>aquí</u>.</a></p>
+        <p>¿Prefieres resetear un dispositivo en concreto? <a href="/admin/reset-device" data-toggle="collapse" aria-expanded="false" aria-controls="collapse">Click <u>aquí</u>.</a></p>
   		</div>
     </div>
 

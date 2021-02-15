@@ -21,10 +21,10 @@
               </a>
             </li>
             <li class='nav-item'>
-                <a class='nav-link' href= web_url + '/inicio'>Volver al Inicio</a>
+                <a class='nav-link' href='/inicio'>Volver al Inicio</a>
             </li>
             <li class="nav-item">
-                 <a class="nav-link" href= web_url + '/logout'>Cerrar Sesión</a>
+                 <a class="nav-link" href='/logout'>Cerrar Sesión</a>
             </li>
           </ul>
         </div>
@@ -39,19 +39,19 @@
 
 	<head>
 
-    <script> var web_url = "<URL>";</script>
+
 
     <meta charset="utf-8">
-		<title>Consola</title>
-    <link rel="icon" type="image/png" href="/images/icon.png" />
+	<title>Consola</title>
+    <link rel="icon" type="image/png" href="./images/icon.png" />
 
     <!-- CSS -->
-    <link rel="stylesheet" href="serverConsole/css/console.css">
+    <link rel="stylesheet" href="server_node/css/console.css">
     <link rel="stylesheet" href="css/alerts.css">
     <link rel="stylesheet" href="css/bootstrap.min.css">
 
-		<!-- Required meta tags -->
-		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	 <!-- Required meta tags -->
+	 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
      <style>
         .pageCover {
@@ -108,7 +108,7 @@
 
       $(function () {
           setTimeout(function(){
-            var socket = io(web_url + ':' + port + '/');
+            var socket = io(url + ':' + port + '/');
           }, 1500);
           const boton = document.getElementById("enviar");
           $('form').submit(function(e){
@@ -122,7 +122,7 @@
           });
 
         function setJsPort() {
-          stablishPortConnection(port, username, web_url);
+          stablishPortConnection(port, username, url);
           getName();
         }
 
@@ -141,23 +141,23 @@
 
   </head>
 
-	<body background="/images/background.jpg" onload="setJsPort();">
+  <body background="/images/background.jpg" onload="setJsPort();">
  
-    <script type="text/javascript"> $('p').append(Math.random()); $(window).bind({ beforeunload: function(ev) { ev.preventDefault(); }, unload: function(ev) { ev.preventDefault(); } }); </script>
+	<script type="text/javascript"> $('p').append(Math.random()); $(window).bind({ beforeunload: function(ev) { ev.preventDefault(); }, unload: function(ev) { ev.preventDefault(); } }); </script>
 
-		<div id='principal' class="container">
-		  <div class='alert alert-success mt-4' role='alert'>
-        
-        <i><h1 id="title"></h1></i>
-        <ul id="messages"></ul>
-        <ul id="console"></ul>
-        <div id="commandConsole">
-          <script> loadCommandForm(); </script>
-        </div>
-		  </div>
-    </div>
+	<div id='principal' class="container">
+	  <div class='alert alert-success mt-4' role='alert'>
+	
+		<i><h1 id="title"></h1></i>
+		<ul id="messages"></ul>
+		<ul id="console"></ul>
+		<div id="commandConsole">
+		  <script> loadCommandForm(); </script>
+		</div>
+	  </div>
+	</div>
 
-	</body>
+  </body>
 
 <br>
 <br>

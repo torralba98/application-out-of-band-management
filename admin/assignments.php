@@ -146,9 +146,7 @@
                     $user_group = str_replace('%20'," ",$user_group[1]);
 
                     // Query sent to database
-                    $result = mysqli_query($conn, "SELECT id FROM device_group
-                                                   EXCEPT
-                                                   SELECT device_group_id_assigned FROM user_group WHERE device_group_id_assigned IS NOT NULL");
+                    $result = mysqli_query($conn, "SELECT d.id FROM device_group d LEFT JOIN user_group u ON d.id=u.device_group_id_assigned");
 
                    echo "<form action='' method='post'>";
                    if (mysqli_num_rows($result)==0)

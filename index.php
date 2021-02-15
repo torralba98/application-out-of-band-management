@@ -53,12 +53,12 @@
 								</div>
 								<div class="form-group">
 									<input type="password" class="form-control input-lg" autocomplete="on" name="password" placeholder="contraseña" required>
-                  <FONT SIZE=2><a href="http://10.51.1.44/forgot" data-toggle="collapse" aria-expanded="false" aria-controls="collapse">¿Olvidaste tu contraseña?</a></FONT>
+                  <FONT SIZE=2><a href="forgot" data-toggle="collapse" aria-expanded="false" aria-controls="collapse">¿Olvidaste tu contraseña?</a></FONT>
 								</div>
                 <br>
 									<button type="submit" class="btn btn-success btn-block">Iniciar sesión</button>
               </form>
-							<p>¿No tienes cuenta? <a href="http://10.51.1.44/register" data-toggle="collapse" aria-expanded="false" aria-controls="collapse"><u>Regístrate</u> ahora.</a></p>
+							<p>¿No tienes cuenta? <a href="register" data-toggle="collapse" aria-expanded="false" aria-controls="collapse"><u>Regístrate</u> ahora.</a></p>
 
 						</div>
 					</div>

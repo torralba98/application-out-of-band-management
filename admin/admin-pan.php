@@ -4,7 +4,7 @@
 
   $root = realpath($_SERVER["DOCUMENT_ROOT"]);
 
-  include '../web_config/configuration_properties.php';
+  include "../web_config/configuration_properties.php";
 
   $conn = mysqli_connect($dbhost, $dbuser, $dbpass, $dbname);
 

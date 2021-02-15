@@ -201,7 +201,7 @@
                               echo "html.innerHTML = `<a style='color:#FF0000';><a style='color:#FF0000';>Algo ha fallado. Por favor, inténtelo de nuevo más tarde.</a>`;";
                               echo "document.getElementById('registerErr').appendChild(html); </script>";
                             } else {
-                                $link = "<a href='http://10.51.1.44/verify?user=".$username."&amp;token=".$token."'>Click para verificar tu cuenta.</a>";
+                                $link = "<a href=".$web_url."/verify?user=".$username."&amp;token=".$token.">Click para verificar tu cuenta.</a>";
 
                                 $mail = new PHPMailer(true);
 

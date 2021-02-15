@@ -23,8 +23,8 @@
     <title>Contraseña Olvidada</title>
     <link rel="icon" type="image/png" href="/images/icon.png" />
     
-    <?php $
-      username = ""; 
+    <?php 
+      $username = ""; 
       include "$root/web/header.php"; 
     ?>
 
@@ -181,8 +181,6 @@
                   } else{
                       $password = trim($_POST["password"]);
                   }
-                  
-                  echo $password;
 
                   // Validate confirm password
                   if(empty(trim($_POST["confirm_password"]))){
@@ -209,9 +207,9 @@
                       if (isset($user[1]))
                           $user = explode("&token=", $user[1]);
 
-                      $result = mysqli_query($conn2, "UPDATE user SET password = '$pass' WHERE username = '$user[0]'");
+                      $result1 = mysqli_query($conn2, "UPDATE user SET password = '$pass' WHERE username = '$user[0]'");
 
-                      if (!$result) {
+                      if (!$result1) {
                         $registry_err = "failure";
                         echo "<script> var html = document.createElement('div');";
                         echo "html.innerHTML = `<a style='color:#FF0000';><a style='color:#FF0000';>Algo ha fallado. Por favor, inténtelo de nuevo más tarde.</a>`;";
@@ -283,11 +281,11 @@
                       }
                       else {
                         $usernamePos = strpos($param_email,"@udc.es");
-                        $username = substr($param_email, 0, $usernamePos);
+                        $restablishUsername = substr($param_email, 0, $usernamePos);
 
-                        $result = mysqli_query($conn1, "SELECT username FROM user WHERE username = '$username'");
+                        $result2 = mysqli_query($conn1, "SELECT username FROM user WHERE username = '$restablishUsername'");
 
-                        $row = mysqli_fetch_assoc($result);
+                        $row = mysqli_fetch_assoc($result2);
 
                         if ($row == 0){
                           $email_err = "failure";
@@ -307,7 +305,7 @@
                            include "./web_config/configuration_properties.php";
 
                            $param_email = strtolower($param_email);
-                           $token = md5($username).rand(10,9999);
+                           $token = md5($restablishUsername).rand(10,9999);
 
                            $expFormat = mktime(
                            date("H"), date("i"), date("s"), date("m") ,date("d")+1, date("Y")
@@ -315,9 +313,9 @@
 
                           $expDate = date("Y-m-d H:i:s",$expFormat);
 
-                          $update = mysqli_query($conn1,"UPDATE user set reset_link_token='" . $token . "' ,exp_date='" . $expDate . "' WHERE username='" . $username . "'");
-
-                          $link = "<a href=".$web_url."forgot?user=".$username."&amp;token=".$token."'>Click para restablecer la contraseña.</a>";
+                          $update = mysqli_query($conn1,"UPDATE user set reset_link_token='" . $token . "' ,exp_date='" . $expDate . "' WHERE username='" . $restablishUsername . "'");
+						  
+                          $link = "<a href=".$web_url."/forgot?user=".$restablishUsername."&amp;token=".$token.">Click para restablecer la contraseña.</a>";
 
                           $mail = new PHPMailer(true);
 

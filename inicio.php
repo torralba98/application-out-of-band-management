@@ -69,7 +69,7 @@
 					var seg = localStorage.getItem('segs');
 				  var min = localStorage.getItem('mins');
 
-					if ((seg == 0 && min == 0) || min < 0 || seg < 0){
+					if ((seg == 0 && min == 0) || min < 0 || seg < 0 || is_null(min) || is_null(seg) {
 						seg = 0;
 						min = 3;
 				  }
@@ -253,7 +253,7 @@
 
 				$token = md5($username).rand(10,99999);
 
-				$link = "<a href=".$web_url."/verify?user=".$username."&amp;token=".$token."'>Click para verificar tu cuenta.</a>";
+				$link = "<a href=".$web_url."/verify?user=".$username."&amp;token=".$token.">Click para verificar tu cuenta.</a>";
 
 				$mail = new PHPMailer(true);
 
@@ -365,7 +365,10 @@
 						$result = mysqli_query($conn, "SELECT d.Id, used_by FROM user u JOIN user_group ug ON u.user_group_id=ug.id JOIN device_group dg ON ug.device_group_id_assigned=dg.id JOIN device d ON d.device_group_id=dg.id WHERE u.username = '$username' AND in_use = 'YES'");
 						if (mysqli_num_rows($result)==0)
 							 echo "<p style='margin-left: 2em; color:red'> No hay ningún <u>dispositivo en uso</u>.<br><br>";
-
+							 
+						include "./web_config/configuration_properties.php";
+						$devices = simplexml_load_file($web_url."/web_config/devices_info.xml");
+						
 						while ($row = mysqli_fetch_array($result)) {
 							foreach($devices as $device)
 								if ($device->idDb == $row[0]) {
@@ -436,10 +439,15 @@
 			$result = mysqli_query($conn, "SELECT Id, used_by FROM device WHERE in_use = 'YES'");
 			if (mysqli_num_rows($result)==0)
 				 echo "<p style='margin-left: 2em; color:red'> No hay ningún <u>dispositivo en uso</u>.<br><br>";
+				 
+		    include "./web_config/configuration_properties.php";
+			$devices = simplexml_load_file($web_url."/web_config/devices_info.xml");
+			
 			while ($row = mysqli_fetch_array($result)) {
 				foreach($devices as $device)
 					if ($device->idDb == $row[0]) {
 						$deviceName = $device->name;
+						
 					}
 				printf("<form action='' method='post'>
 								<p style='margin-left: 2em'> • El dispositivo <b>$deviceName</b> está siendo usado ahora mismo por el usuario <b>%s</b>.

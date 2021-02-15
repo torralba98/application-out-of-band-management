@@ -398,7 +398,7 @@ server.listen(process.argv[3], function(){
       con.query(updateTimeServerUp, function (err, result) {
         if (err) throw err;
       });
-  console.log('Server (' + process.argv[2] + ') running on port' + process.argv[3]);
+  console.log('Server (' + process.argv[2] + ') running on port: ' + process.argv[3]);
 
   var i;
   for (i = 10; i <= process.argv.length-4; i++)
@@ -414,9 +414,9 @@ server.listen(process.argv[3], function(){
 
 var con = mysql.createConnection({
   host: "<HOST>",
-  user: "<USERNAME>",
-  password: "<PASSWORD>",
-  database: "DATABASE_NAME"
+  user: "<DB_USERNAME>",
+  password: "<DB_PASSWORD>",
+  database: "<DB_NAME>"
 });
 
 con.connect(function(err) {
@@ -424,13 +424,16 @@ con.connect(function(err) {
   console.log("Connected to DB!");
 });
 
+
 app.get('/', function (req,res) {
   if (pidCons == -1)
     pidCons = req.query.pidConsole;
-  username = req.query.user;
+  if (username == "")
+    username = req.query.user;
   if (token == "")
     token = req.query.token;
   if (deviceName == "")
     deviceName = req.query.deviceName;
   res.redirect('/terminal' + deviceId + '?port=' + process.argv[3] + '&username=' + username + '&token=' + req.query.token);
+ 
 });
