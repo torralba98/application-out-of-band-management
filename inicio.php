@@ -69,7 +69,7 @@
 					var seg = localStorage.getItem('segs');
 				  var min = localStorage.getItem('mins');
 
-					if ((seg == 0 && min == 0) || min < 0 || seg < 0 || is_null(min) || is_null(seg) {
+					if ((seg == 0 && min == 0) || min < 0 || seg < 0 || is_null(min) || is_null(seg)) {
 						seg = 0;
 						min = 3;
 				  }
