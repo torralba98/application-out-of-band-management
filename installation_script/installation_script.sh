@@ -99,7 +99,7 @@ echo -e "\n=====================================================================
 sudo sed -i 's/<PASSWORD>/'$adminpass'/g' script.sql 
 sudo sed -i 's/<ADMIN_E-MAIL>/'$adminemail'/g' script.sql 
 
-sundo mysql -u admin -p$mysqlpass -e "source script.sql" 
+sudo mysql -u admin -p$mysqlpass -e "source script.sql" 
 
 sudo apt install -y apache2 libapache2-mod-php7.4 
 
@@ -151,7 +151,7 @@ sudo sed -i 's/DirectoryIndex index.html index.cgi index.pl index.php index.xhtm
 sudo usermod -a -G dialout www-data 
 sudo systemctl restart apache2 
 
-echo -e "========================================================================\n"
+echo -e "\n========================================================================\n"
 read -p "Introduzca el host del servidor de base de datos (generalmente localhost): " hostdb
 echo -e "\n========================================================================\n"
 
@@ -165,8 +165,9 @@ echo -e "Recuerda incluir 'http://' o 'https://' y obviar el '/' del final.\n"
 echo -e "Por ejemplo: http://www.prueba.es\n" 
 read -p "Introducir URL: " url_web
 echo -e "\n========================================================================\n"
-sudo sed -i 's/<URL>/'$url_web'/g' /var/www/html/web_config/configuration_properties.php
-sudo sed -i 's/<URL>/'$url_web'/g' /var/www/html/.htaccess 
+
+sudo sed -i 's/<WEB_URL>/'$url_web'/g' /var/www/html/web_config/configuration_properties.php
+sudo sed -i 's/<WEB_URL>/'$url_web'/g' /var/www/html/.htaccess 
 
 echo -e "Introduzca el e-mail con el que la aplicación enviará correos electrónicos. "
 echo -e "Recuerde que el e-mail debe tener habilitado el acceso de aplicaciones poco seguras.\n"
