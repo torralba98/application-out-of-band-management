@@ -14,13 +14,13 @@ sleep 5
 
 sudo apt update 
 sudo apt upgrade -y 
-sudo apt install snapd -y 
-sudo snap install expect -y 
+sudo apt install snapd curl -y 
+sudo snap install expect
 
 sudo apt -y install software-properties-common 
 sudo add-apt-repository ppa:ondrej/php -y 
 sudo apt-get update 
-sudo apt -y install php7.4 php7.4-xml php7.4-mysqli 
+sudo apt -y install php7.4 php7.4-xml php7.4-mysql
 sudo sed -i 's/;extension=mysqli/extension=mysqli/g' /etc/php/7.4/apache2/php.ini 
 
 sudo curl -fsSL https://deb.nodesource.com/setup_14.x | sudo -E bash - 
