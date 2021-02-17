@@ -14,8 +14,7 @@ sleep 5
 
 sudo apt update 
 sudo apt upgrade -y 
-sudo apt install curl snapd -y
-sudo snap install expect
+sudo apt install curl expect -y
 
 sudo apt -y install software-properties-common 
 sudo add-apt-repository ppa:ondrej/php -y 
@@ -200,7 +199,8 @@ sudo xhost +local:
 sudo chmod a+rw /var/www/html/web_config/devices_info.xml 
 sudo chmod a+rw /var/www/html/server_node/logs
 
-sudo apt purge curl -y
+sudo apt purge expect curl -y
+
 sudo apt autoclean -y
 sudo apt autoremove -y
 
