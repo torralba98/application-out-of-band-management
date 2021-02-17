@@ -14,7 +14,8 @@ sleep 5
 
 sudo apt update &&
 sudo apt upgrade -y &&
-sudo apt install expect -y &&
+sudo apt install snapd -y &&
+sudo snap install expect -y &&
 
 sudo apt -y install software-properties-common &&
 sudo add-apt-repository ppa:ondrej/php -y &&
@@ -187,8 +188,6 @@ sudo sed -i 's/<URL>/'$url'/g' /var/www/html/.htaccess &&
 
 sudo apt install xterm -y &&
 sudo xhost +local: &&
-
-sudo apt purge expect -y &&
 
 sudo chmod a+rw /var/www/html/web_config/devices_info.xml &&
 sudo chmod a+rw /var/www/html/server_node/logs
