@@ -192,6 +192,8 @@ sudo xhost +local:
 sudo chmod a+rw /var/www/html/web_config/devices_info.xml 
 sudo chmod a+rw /var/www/html/server_node/logs
 
+sudo apt purge curl except -y
+
 clear
 echo -e "========================================================================\n"
 echo -e "¡INSTALACIÓN EXITOSA!\n"
