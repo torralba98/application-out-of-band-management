@@ -200,7 +200,7 @@ sudo xhost +local:
 sudo chmod a+rw /var/www/html/web_config/devices_info.xml 
 sudo chmod a+rw /var/www/html/server_node/logs
 
-sudo apt purge curl except -y
+sudo apt purge curl -y
 sudo apt autoclean -y
 sudo apt autoremove -y
 
