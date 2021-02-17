@@ -14,7 +14,7 @@ sleep 5
 
 sudo apt update 
 sudo apt upgrade -y 
-sudo apt install curl -y
+sudo apt install curl snapd -y
 sudo snap install expect
 
 sudo apt -y install software-properties-common 
