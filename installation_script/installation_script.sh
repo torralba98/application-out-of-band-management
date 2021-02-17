@@ -14,7 +14,7 @@ sleep 5
 
 sudo apt update 
 sudo apt upgrade -y 
-sudo apt install curl except -y
+sudo apt install curl expect -y
 
 sudo apt -y install software-properties-common 
 sudo add-apt-repository ppa:ondrej/php -y 
