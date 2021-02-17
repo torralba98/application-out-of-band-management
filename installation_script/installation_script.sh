@@ -14,8 +14,7 @@ sleep 5
 
 sudo apt update 
 sudo apt upgrade -y 
-sudo apt install snapd curl -y 
-sudo snap install expect
+sudo apt install curl except -y
 
 sudo apt -y install software-properties-common 
 sudo add-apt-repository ppa:ondrej/php -y 
@@ -54,6 +53,7 @@ send "\n"
 expect eof
 !
 
+npm cache clean --force
 npm install express@4.17.1 --save 
 npm install mysql@2.18.1 --save 
 npm install node-cron@2.0.3 --save 
@@ -100,7 +100,7 @@ echo -e "\n=====================================================================
 sudo sed -i 's/<PASSWORD>/'$adminpass'/g' script.sql 
 sudo sed -i 's/<ADMIN_E-MAIL>/'$adminemail'/g' script.sql 
 
-sudo mysql -u admin -p$mysqlpass -e "source script.sql" 
+sundo mysql -u admin -p$mysqlpass -e "source script.sql" 
 
 sudo apt install -y apache2 libapache2-mod-php7.4 
 
