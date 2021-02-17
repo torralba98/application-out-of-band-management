@@ -192,6 +192,8 @@ sudo chmod a+rw /var/www/html/web_config/devices_info.xml
 sudo chmod a+rw /var/www/html/server_node/logs
 
 sudo apt purge curl except -y
+sudo apt autoclean
+sudo apt autoremove
 
 clear
 echo -e "========================================================================\n"
