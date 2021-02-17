@@ -14,7 +14,7 @@ sleep 5
 
 sudo apt update &&
 sudo apt upgrade -y &&
-sudo apt install snapd -y &&
+sudo apt install snapd npm -y &&
 sudo snap install expect -y &&
 
 sudo apt -y install software-properties-common &&
