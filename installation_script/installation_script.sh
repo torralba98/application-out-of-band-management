@@ -161,12 +161,20 @@ sudo sed -i 's/<DB_NAME>/db/g' /var/www/html/web_config/configuration_properties
 sudo sed -i 's/<HOST>/'$hostdb'/g' /var/www/html/web_config/configuration_properties.php 
 
 echo -e "Introduzca la URL de la web. "
-echo -e "Recuerda incluir 'http://' o 'https://' y obviar el '/' del final.\n"
-echo -e "Por ejemplo: http://www.prueba.es\n" 
+echo -e "Por ejemplo: www.prueba.es\n" 
 read -p "Introducir URL: " url
 echo -e "\n========================================================================\n"
 
-sudo sed -i 's/<URL>/'$url'/g' /var/www/html/web_config/configuration_properties.php
+read -p "¿Quieres que use HTTPS? (s / n) " url_verify
+echo -e "\n========================================================================\n"
+
+if [ "$url_verify" = "s" ] || [ "$url_verify" = "S" ]; 
+then 
+sudo sed -i 's/<URL>/http:\/\/'$url'/g' /var/www/html/web_config/configuration_properties.php;
+else
+sudo sed -i 's/<URL>/https:\/\/'$url'/g' /var/www/html/web_config/configuration_properties.php;
+fi
+
 sudo sed -i 's/<URL>/'$url'/g' /var/www/html/.htaccess 
 
 echo -e "Introduzca el e-mail con el que la aplicación enviará correos electrónicos. "
