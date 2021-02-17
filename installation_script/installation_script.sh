@@ -170,9 +170,9 @@ echo -e "\n=====================================================================
 
 if [ "$url_verify" = "s" ] || [ "$url_verify" = "S" ]; 
 then 
-sudo sed -i 's/<URL>/http:\/\/'$url'/g' /var/www/html/web_config/configuration_properties.php;
-else
 sudo sed -i 's/<URL>/https:\/\/'$url'/g' /var/www/html/web_config/configuration_properties.php;
+else
+sudo sed -i 's/<URL>/http:\/\/'$url'/g' /var/www/html/web_config/configuration_properties.php;
 fi
 
 sudo sed -i 's/<URL>/'$url'/g' /var/www/html/.htaccess 
@@ -200,8 +200,8 @@ sudo chmod a+rw /var/www/html/web_config/devices_info.xml
 sudo chmod a+rw /var/www/html/server_node/logs
 
 sudo apt purge curl except -y
-sudo apt autoclean
-sudo apt autoremove
+sudo apt autoclean -y
+sudo apt autoremove -y
 
 clear
 echo -e "========================================================================\n"
