@@ -9,5 +9,3 @@ Final degree project for Alfonso Torralba Mantiñán.
   2- Abriremos un terminal y nos situaremos en el directorio "Installation_Script", contenido entre los archivos descargados del repositorio.
   
   3- Ejecutaremos el script con privilegios root.
-  
-# #################################################################################################################################################
