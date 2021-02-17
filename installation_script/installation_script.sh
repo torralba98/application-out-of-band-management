@@ -12,22 +12,22 @@ echo -e "El proceso puede durar varios minutos. Por favor, no cierre el terminal
 echo -e "========================================================================\n"
 sleep 5
 
-sudo apt update &&
-sudo apt upgrade -y &&
-sudo apt install snapd npm -y &&
-sudo snap install expect -y &&
+sudo apt update 
+sudo apt upgrade -y 
+sudo apt install snapd -y 
+sudo snap install expect -y 
 
-sudo apt -y install software-properties-common &&
-sudo add-apt-repository ppa:ondrej/php -y &&
-sudo apt-get update &&
-sudo apt -y install php7.4 php7.4-xml php7.4-mysqli &&
-sudo sed -i 's/;extension=mysqli/extension=mysqli/g' /etc/php/7.4/apache2/php.ini &&
+sudo apt -y install software-properties-common 
+sudo add-apt-repository ppa:ondrej/php -y 
+sudo apt-get update 
+sudo apt -y install php7.4 php7.4-xml php7.4-mysqli 
+sudo sed -i 's/;extension=mysqli/extension=mysqli/g' /etc/php/7.4/apache2/php.ini 
 
-sudo curl -fsSL https://deb.nodesource.com/setup_14.x | sudo -E bash - &&
-sudo apt-get install -y nodejs &&
+sudo curl -fsSL https://deb.nodesource.com/setup_14.x | sudo -E bash - 
+sudo apt-get install -y nodejs 
 
-cd .. &&
-cd server_node &&
+cd .. 
+cd server_node 
 
 /usr/bin/expect <<!
 spawn npm init
@@ -54,13 +54,13 @@ send "\n"
 expect eof
 !
 
-npm install express@4.17.1 --save &&
-npm install mysql@2.18.1 --save &&
-npm install node-cron@2.0.3 --save &&
-npm install serialport@9.0.4 --save &&
-npm install socket.io@2.3.0 --save &&
+npm install express@4.17.1 --save 
+npm install mysql@2.18.1 --save 
+npm install node-cron@2.0.3 --save 
+npm install serialport@9.0.4 --save 
+npm install socket.io@2.3.0 --save 
 
-sudo apt install -y mariadb-server &&
+sudo apt install -y mariadb-server 
 
 SECURE_MYSQL=$(expect -c " 
 set timeout 10 
@@ -86,10 +86,10 @@ echo -e "=======================================================================
 read -p "Introduzca una contraseña para el usuario 'admin' de la base de datos: " mysqlpass
 echo -e "\n========================================================================\n"
 
-sudo mysql -e "GRANT ALL ON *.* TO 'admin'@'localhost' IDENTIFIED BY '$mysqlpass' WITH GRANT OPTION;" &&
-sudo mysql -e "FLUSH PRIVILEGES;" &&
+sudo mysql -e "GRANT ALL ON *.* TO 'admin'@'localhost' IDENTIFIED BY '$mysqlpass' WITH GRANT OPTION;" 
+sudo mysql -e "FLUSH PRIVILEGES;" 
 
-cd .. &&
+cd .. 
 
 read -p "Introduzca la contraseña para el usuario 'admin' de la aplicación web: " adminpass
 
@@ -97,22 +97,22 @@ echo -e "\n=====================================================================
 read -p "Introduzca el e-mail para el usuario 'admin' de la aplicación web: " adminemail
 echo -e "\n========================================================================\n"
 
-sudo sed -i 's/<PASSWORD>/'$adminpass'/g' script.sql &&
-sudo sed -i 's/<ADMIN_E-MAIL>/'$adminemail'/g' script.sql &&
+sudo sed -i 's/<PASSWORD>/'$adminpass'/g' script.sql 
+sudo sed -i 's/<ADMIN_E-MAIL>/'$adminemail'/g' script.sql 
 
-sudo mysql -u admin -p$mysqlpass -e "source script.sql" &&
+sudo mysql -u admin -p$mysqlpass -e "source script.sql" 
 
-sudo apt install -y apache2 libapache2-mod-php7.4 &&
+sudo apt install -y apache2 libapache2-mod-php7.4 
 
-sudo a2dismod mpm_event &&
-sudo a2enmod mpm_prefork &&
-sudo a2enmod php7.4 &&
+sudo a2dismod mpm_event 
+sudo a2enmod mpm_prefork 
+sudo a2enmod php7.4 
 
-sudo rm -r /var/www/html/index.html &&
-sudo mv * /var/www/html &&
-sudo mv .htaccess /var/www/html &&
+sudo rm -r /var/www/html/index.html 
+sudo mv * /var/www/html 
+sudo mv .htaccess /var/www/html 
 
-sudo a2enmod rewrite &&
+sudo a2enmod rewrite 
 
 declare -i line=$(awk '/DocumentRoot/{ print NR; exit }' /etc/apache2/sites-available/000-default.conf)
 
@@ -143,23 +143,23 @@ $line insert
 xit
 eof
 
-sudo a2enmod proxy &&
-sudo a2enmod proxy_http &&
-sudo systemctl restart apache2 &&
+sudo a2enmod proxy 
+sudo a2enmod proxy_http 
+sudo systemctl restart apache2 
 
-sudo sed -i 's/DirectoryIndex index.html index.cgi index.pl index.php index.xhtml index.htm/DirectoryIndex index.php index.cgi index.pl index.html index.xhtml index.htm/g' /etc/apache2/mods-available/dir.conf &&
+sudo sed -i 's/DirectoryIndex index.html index.cgi index.pl index.php index.xhtml index.htm/DirectoryIndex index.php index.cgi index.pl index.html index.xhtml index.htm/g' /etc/apache2/mods-available/dir.conf 
 
-sudo usermod -a -G dialout www-data &&
-sudo systemctl restart apache2 &&
+sudo usermod -a -G dialout www-data 
+sudo systemctl restart apache2 
 
 echo -e "========================================================================\n"
 read -p "Introduzca el host del servidor de base de datos (generalmente localhost): " hostdb
 echo -e "\n========================================================================\n"
 
-sudo sed -i 's/<USERNAME>/admin/g' /var/www/html/web_config/configuration_properties.php &&
-sudo sed -i 's/<USERNAME_PASSWORD>/'$mysqlpass'/g' /var/www/html/web_config/configuration_properties.php &&
-sudo sed -i 's/<DB_NAME>/db/g' /var/www/html/web_config/configuration_properties.php &&
-sudo sed -i 's/<HOST>/'$hostdb'/g' /var/www/html/web_config/configuration_properties.php &&
+sudo sed -i 's/<USERNAME>/admin/g' /var/www/html/web_config/configuration_properties.php 
+sudo sed -i 's/<USERNAME_PASSWORD>/'$mysqlpass'/g' /var/www/html/web_config/configuration_properties.php 
+sudo sed -i 's/<DB_NAME>/db/g' /var/www/html/web_config/configuration_properties.php 
+sudo sed -i 's/<HOST>/'$hostdb'/g' /var/www/html/web_config/configuration_properties.php 
 
 echo -e "Introduzca la URL de la web. "
 echo -e "Recuerda incluir 'http://' o 'https://' y obviar el '/' del final.\n"
@@ -175,21 +175,21 @@ echo -e "\n=====================================================================
 read -p "Introduzca la contraseña para el e-mail anterior: " emailpass
 echo -e "========================================================================\n"
 
-sudo sed -i 's/<URL>/'$url'/g' /var/www/html/web_config/configuration_properties.php &&
-sudo sed -i 's/<E-MAIL>/'$email'/g' /var/www/html/web_config/configuration_properties.php &&
-sudo sed -i 's/<E-MAIL_PASS>/'$emailpass'/g' /var/www/html/web_config/configuration_properties.php &&
+sudo sed -i 's/<URL>/'$url'/g' /var/www/html/web_config/configuration_properties.php 
+sudo sed -i 's/<E-MAIL>/'$email'/g' /var/www/html/web_config/configuration_properties.php 
+sudo sed -i 's/<E-MAIL_PASS>/'$emailpass'/g' /var/www/html/web_config/configuration_properties.php 
 
-sudo sed -i 's/<HOST>/'$hostdb'/g' /var/www/html/server_node/config/configuration_properties.js &&
-sudo sed -i 's/<USERNAME>/admin/g' /var/www/html/server_node/config/configuration_properties.js &&
-sudo sed -i 's/<PASSWORD>/'$mysqlpass'/g' /var/www/html/server_node/config/configuration_properties.js &&
-sudo sed -i 's/<DB_NAME>/db/g' /var/www/html/server_node/config/configuration_properties.js &&
+sudo sed -i 's/<HOST>/'$hostdb'/g' /var/www/html/server_node/config/configuration_properties.js 
+sudo sed -i 's/<USERNAME>/admin/g' /var/www/html/server_node/config/configuration_properties.js 
+sudo sed -i 's/<PASSWORD>/'$mysqlpass'/g' /var/www/html/server_node/config/configuration_properties.js 
+sudo sed -i 's/<DB_NAME>/db/g' /var/www/html/server_node/config/configuration_properties.js 
 
-sudo sed -i 's/<URL>/'$url'/g' /var/www/html/.htaccess &&
+sudo sed -i 's/<URL>/'$url'/g' /var/www/html/.htaccess 
 
-sudo apt install xterm -y &&
-sudo xhost +local: &&
+sudo apt install xterm -y 
+sudo xhost +local: 
 
-sudo chmod a+rw /var/www/html/web_config/devices_info.xml &&
+sudo chmod a+rw /var/www/html/web_config/devices_info.xml 
 sudo chmod a+rw /var/www/html/server_node/logs
 
 clear
