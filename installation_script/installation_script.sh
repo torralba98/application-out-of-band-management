@@ -165,7 +165,7 @@ echo -e "Por ejemplo: www.prueba.es\n"
 read -p "Introducir URL: " url
 echo -e "\n========================================================================\n"
 
-read -p "¿Quieres que use HTTPS? (s / n) " url_verify
+read -p "¿Se usará HTTPS? (s / n) " url_verify
 echo -e "\n========================================================================\n"
 
 if [ "$url_verify" = "s" ] || [ "$url_verify" = "S" ]; 
