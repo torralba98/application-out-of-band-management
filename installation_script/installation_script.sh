@@ -163,8 +163,10 @@ sudo sed -i 's/<HOST>/'$hostdb'/g' /var/www/html/web_config/configuration_proper
 echo -e "Introduzca la URL de la web. "
 echo -e "Recuerda incluir 'http://' o 'https://' y obviar el '/' del final.\n"
 echo -e "Por ejemplo: http://www.prueba.es\n" 
-read -p "Introducir URL: " url
+read -p "Introducir URL: " url_web
 echo -e "\n========================================================================\n"
+sudo sed -i 's/<URL>/'$url_web'/g' /var/www/html/web_config/configuration_properties.php
+sudo sed -i 's/<URL>/'$url_web'/g' /var/www/html/.htaccess 
 
 echo -e "Introduzca el e-mail con el que la aplicación enviará correos electrónicos. "
 echo -e "Recuerde que el e-mail debe tener habilitado el acceso de aplicaciones poco seguras.\n"
@@ -174,7 +176,6 @@ echo -e "\n=====================================================================
 read -p "Introduzca la contraseña para el e-mail anterior: " emailpass
 echo -e "========================================================================\n"
 
-sudo sed -i 's/<URL>/'$url'/g' /var/www/html/web_config/configuration_properties.php 
 sudo sed -i 's/<E-MAIL>/'$email'/g' /var/www/html/web_config/configuration_properties.php 
 sudo sed -i 's/<E-MAIL_PASS>/'$emailpass'/g' /var/www/html/web_config/configuration_properties.php 
 
@@ -182,8 +183,6 @@ sudo sed -i 's/<HOST>/'$hostdb'/g' /var/www/html/server_node/config/configuratio
 sudo sed -i 's/<USERNAME>/admin/g' /var/www/html/server_node/config/configuration_properties.js 
 sudo sed -i 's/<PASSWORD>/'$mysqlpass'/g' /var/www/html/server_node/config/configuration_properties.js 
 sudo sed -i 's/<DB_NAME>/db/g' /var/www/html/server_node/config/configuration_properties.js 
-
-sudo sed -i 's/<URL>/'$url'/g' /var/www/html/.htaccess 
 
 sudo apt install xterm -y 
 sudo xhost +local: 
