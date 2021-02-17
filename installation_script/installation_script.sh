@@ -53,7 +53,6 @@ send "\n"
 expect eof
 !
 
-npm cache clean --force
 npm install express@4.17.1 --save 
 npm install mysql@2.18.1 --save 
 npm install node-cron@2.0.3 --save 
@@ -198,7 +197,7 @@ clear
 echo -e "========================================================================\n"
 echo -e "¡INSTALACIÓN EXITOSA!\n"
 echo -e "\n========================================================================\n"
-sleep 2
+sleep 1
 read -p "Pulse ENTER para salir del instalador." ok
 clear
 
