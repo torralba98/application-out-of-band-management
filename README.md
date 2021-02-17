@@ -4,7 +4,7 @@ Final degree project for Alfonso Torralba Mantiñán.
 
 # Instalación automática para entornos Ubuntu
 
-  ## Es recomendable ejecutarlo en un entorno virgen (Sin Apache Server, MariaDB, PHP y sus dependencias instaladas)
+  ~ Es recomendable ejecutarlo en un entorno virgen (Sin Apache Server, MariaDB, PHP y sus dependencias instaladas)
   
   1- Hacer una copia en local del presente repositorio GitHub.
   
