@@ -5,8 +5,8 @@ const db_username = '<USERNAME>';
 const db_password = '<PASSWORD>';
 const db_name = '<DB_NAME>';
 
-module.exports = db_host;
-module.exports = db_username;
-module.exports = db_password;
-module.exports = db_name;
+exports.db_host = db_host;
+exports.db_username = db_username;
+exports.db_password = db_password;
+exports.db_name = db_name;
 

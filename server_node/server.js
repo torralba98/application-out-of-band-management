@@ -12,10 +12,7 @@ const SerialPort = require("serialport");
 const Readline = require("@serialport/parser-readline");
 const cron = require('node-cron');
 
-const db_host = require('./config/configuration_properties');
-const db_username = require('./config/configuration_properties');
-const db_password = require('./config/configuration_properties');
-const db_name = require('./config/configuration_properties');
+const config = require('./config/configuration_properties');
 
 var pidCons = -1;
 var username = "";
@@ -418,10 +415,10 @@ server.listen(process.argv[3], function(){
 });
 
 var con = mysql.createConnection({
-  host: db_host,
-  user: db_username,
-  password: db_password,
-  database: db_name
+  host: config.db_host,
+  user: config.db_username,
+  password: config.db_password,
+  database: config.db_name
 });
 
 con.connect(function(err) {
