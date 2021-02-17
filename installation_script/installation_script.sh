@@ -152,13 +152,8 @@ sudo usermod -a -G dialout www-data
 sudo systemctl restart apache2
 
 echo -e "========================================================================\n"
-read -p "Introduzca el host del servidor web (localhost o IP): " host
-echo -e "\n========================================================================\n"
-
 read -p "Introduzca el host del servidor de base de datos (generalmente localhost): " hostdb
 echo -e "\n========================================================================\n"
-
-sudo sed -i 's/<HOST>/'$host'/g' /var/www/html/web_config/configuration_properties.php
 
 sudo sed -i 's/<USERNAME>/admin/g' /var/www/html/web_config/configuration_properties.php
 sudo sed -i 's/<USERNAME_PASSWORD>/'$mysqlpass'/g' /var/www/html/web_config/configuration_properties.php
