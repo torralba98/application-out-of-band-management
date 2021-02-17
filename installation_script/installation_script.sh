@@ -166,8 +166,8 @@ echo -e "Por ejemplo: http://www.prueba.es\n"
 read -p "Introducir URL: " url
 echo -e "\n========================================================================\n"
 
-sudo sed -i 's/<WEB>/'$url'/g' /var/www/html/web_config/configuration_properties.php
-sudo sed -i 's/<WEB>/'$url'/g' /var/www/html/.htaccess 
+sudo sed -i 's/<URL>/'$url'/g' /var/www/html/web_config/configuration_properties.php
+sudo sed -i 's/<URL>/'$url'/g' /var/www/html/.htaccess 
 
 echo -e "Introduzca el e-mail con el que la aplicación enviará correos electrónicos. "
 echo -e "Recuerde que el e-mail debe tener habilitado el acceso de aplicaciones poco seguras.\n"
