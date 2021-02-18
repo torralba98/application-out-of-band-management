@@ -64,18 +64,18 @@ sudo apt install -y mariadb-server
 SECURE_MYSQL=$(expect -c " 
 set timeout 10 
 spawn sudo mysql_secure_installation
-expect "Enter current password for root (enter for none):"
-send "\n"
-expect "Set root password?"
-send "n\n"
-expect "Remove anonymous users?"
-send "\n"
-expect "Disallow root login remotely?"
-send "\n"
-expect "Remove test database and access to it?"
-send "\n"
-expect "Reload privilege tables now?"
-send "\n"
+expect \"Enter current password for root (enter for none):\"
+send \"\n\"
+expect \"Set root password?\"
+send \"n\n\"
+expect \"Remove anonymous users?\"
+send \"\n\"
+expect \"Disallow root login remotely?\"
+send \"\n\"
+expect \"Remove test database and access to it?\"
+send \"\n\"
+expect \"Reload privilege tables now?\"
+send \"\n\"
 expect eof
 ")
 
