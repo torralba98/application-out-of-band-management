@@ -42,20 +42,20 @@
 <!doctype html>
 <html lang="es">
 
-	<head>
+  <head>
 
-		<title>Panel Admin ~ Resetear Dispositivos</title>
+    <title>Panel Admin ~ Resetear Dispositivos</title>
     <link rel="icon" type="image/png" href="/images/icon.png" />
     <?php include "$root/web/header.php"; ?>
     <link rel="stylesheet" href="../css/alerts.css">
     <link rel="stylesheet" href="../admin/css/admin.css">
 
-		<!-- Required meta tags -->
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-		<!-- CSS -->
-		<link rel="stylesheet" href="../css/bootstrap.min.css">
+    <!-- CSS -->
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
     
     <style>
         .pageCover {
@@ -71,20 +71,20 @@
 
   </head>
 
-	<body background="/images/background.jpg">
+  <body background="/images/background.jpg">
 
     <br>
     <nav class='menuHK container'><ul>
-    <li><a href="registered-users">Usuarios</a>|</li>
-    <li><a href="devices">Dispositivos</a>|</li>
-    <li><a href="logs">Logs</a>|</li>
-    <li><a href="assignments">Asignaciones Users/Devices</a>|</li>
-    <li><a href="reset-devices">Resetear Dispositivos</a></li>
+	    <li><a href="registered-users">Usuarios</a>|</li>
+	    <li><a href="devices">Dispositivos</a>|</li>
+	    <li><a href="logs">Logs</a>|</li>
+	    <li><a href="assignments">Asignaciones Users/Devices</a>|</li>
+	    <li><a href="reset-devices">Resetear Dispositivos</a></li>
     </ul></nav>
 
-		<div class="container">
-		<div class='alert alert-success mt-4' role='alert'>
-						<FONT SIZE=4><i><p><a>El uso de este botón hará que todos los <u>dispositivos</u> adquieran el estado de <u>accesibles</u>. <br><br>&nbsp;&nbsp; ~ Usar <b><u>solo</u></b> en casos de fallas eléctricas u otras circunstancias que impliquen un apagado imprevisto de los mismos.</a></p></i></font>
+    <div class="container">
+	<div class='alert alert-success mt-4' role='alert'>
+	      <FONT SIZE=4><i><p><a>El uso de este botón hará que todos los <u>dispositivos</u> adquieran el estado de <u>accesibles</u>. <br><br>&nbsp;&nbsp; ~ Usar <b><u>solo</u></b> en casos de fallas eléctricas u otras circunstancias que impliquen un apagado imprevisto de los mismos.</a></p></i></font>
               <br>
               <form action='' method='post'>
                       <p style='margin-left: 2em'>
@@ -151,11 +151,11 @@
 
           ?>
         <br>
-        <p>¿Prefieres resetear un dispositivo en concreto? <a href="/admin/reset-device" data-toggle="collapse" aria-expanded="false" aria-controls="collapse">Click <u>aquí</u>.</a></p>
-  		</div>
+       <p>¿Prefieres resetear un dispositivo en concreto? <a href="/admin/reset-device" data-toggle="collapse" aria-expanded="false" aria-controls="collapse">Click <u>aquí</u>.</a></p>
+     </div>
     </div>
 
-	</body>
+</body>
 
   <?php include "$root/web/footer.php"; ?>
 
