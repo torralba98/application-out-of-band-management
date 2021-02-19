@@ -39,32 +39,32 @@
 
   <body background="/images/background.jpg">
     
-		<div class="container-fluid">
-			<div class="row">
-				<div class="col-lg-12">
-					<div class="card">
-						<div class="loginBox">
-							<img src="images/udc-logo.png" class="img-responsive" width="190" height="110">
-              <h2>Inicio de sesión</h2>
-              <br>
-							<form action="inicio" method="post">
-								<div class="form-group">
-									<input type="username" class="form-control input-lg" name="username" placeholder="usuario (sin la parte @*.udc.es)" required>
-								</div>
-								<div class="form-group">
-									<input type="password" class="form-control input-lg" autocomplete="on" name="password" placeholder="contraseña" required>
-                  <FONT SIZE=2><a href="forgot" data-toggle="collapse" aria-expanded="false" aria-controls="collapse">¿Olvidaste tu contraseña?</a></FONT>
-								</div>
+	<div class="container-fluid">
+	  <div class="row">
+	   <div class="col-lg-12">
+	    <div class="card">
+	     <div class="loginBox">
+		<img src="images/udc-logo.png" class="img-responsive" width="190" height="110">
+                <h2>Inicio de sesión</h2>
                 <br>
-									<button type="submit" class="btn btn-success btn-block">Iniciar sesión</button>
-              </form>
-							<p>¿No tienes cuenta? <a href="register" data-toggle="collapse" aria-expanded="false" aria-controls="collapse"><u>Regístrate</u> ahora.</a></p>
-
-						</div>
-					</div>
-				</div>
+		<form action="inicio" method="post">
+			<div class="form-group">
+				<input type="username" class="form-control input-lg" name="username" placeholder="usuario (sin la parte @*.udc.es)" required>
 			</div>
-		</div>
+			<div class="form-group">
+			        <input type="password" class="form-control input-lg" autocomplete="on" name="password" placeholder="contraseña" required>
+                	        <FONT SIZE=2><a href="forgot" data-toggle="collapse" aria-expanded="false" aria-controls="collapse">¿Olvidaste tu contraseña?</a></FONT>
+			</div>
+                	<br>
+			<button type="submit" class="btn btn-success btn-block">Iniciar sesión</button>
+                </form>
+		<p>¿No tienes cuenta? <a href="register" data-toggle="collapse" aria-expanded="false" aria-controls="collapse"><u>Regístrate</u> ahora.</a></p>
+
+	     </div>
+	    </div>
+	   </div>
+	  </div>
+	 </div>
 
 </body>
 
