@@ -42,7 +42,7 @@
 
 <!doctype html>
 <html lang="es">
-	<head>
+  <head>
 
    <title>Panel Admin ~ Administrar Grupos Usuarios</title>
    <link rel="icon" type="image/png" href="/images/icon.png" />
@@ -50,14 +50,14 @@
    <link rel="stylesheet" href="../css/alerts.css">
    <link rel="stylesheet" href="../admin/css/admin.css">
 
-		<!-- Required meta tags -->
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+   <!-- Required meta tags -->
+   <meta charset="utf-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-		<!-- CSS -->
-		<link rel="stylesheet" href="../css/bootstrap.min.css">
+   <!-- CSS -->
+   <link rel="stylesheet" href="../css/bootstrap.min.css">
 
-    <style>
+   <style>
       .pageCover {
         position:fixed;
         z-index:0;
@@ -67,38 +67,38 @@
         top:0;
         left:0;
       }
-    </style>
+   </style>
 
-    <script>
+   <script>
 
       function updateView(user_group) {
            window.location = "user-groups?user_group=" + user_group;
       }
 
-    </script>
+   </script>
   
   </head>
 
-	<body background="/images/background.jpg">
+  <body background="/images/background.jpg">
 
     <br>
     <nav class='menuHK container'><ul>
-    <li><a href="registered-users">Usuarios</a>|</li>
-    <li><a href="devices">Dispositivos</a>|</li>
-    <li><a href="logs">Logs</a>|</li>
-    <li><a href="assignments">Asignaciones Users/Devices</a>|</li>
-    <li><a href="reset-devices">Resetear Dispositivos</a></li>
+	    <li><a href="registered-users">Usuarios</a>|</li>
+	    <li><a href="devices">Dispositivos</a>|</li>
+	    <li><a href="logs">Logs</a>|</li>
+	    <li><a href="assignments">Asignaciones Users/Devices</a>|</li>
+	    <li><a href="reset-devices">Resetear Dispositivos</a></li>
     </ul></nav>
 
-		<div class="container">
+    <div class="container">
 
-		<div id='all' class='alert alert-success mt-4' role='alert'>
-      <div><a id='volver' href='registered-users' class='large green button'>Volver</a></div>
+      <div id='all' class='alert alert-success mt-4' role='alert'>
+        <div><a id='volver' href='registered-users' class='large green button'>Volver</a></div>
           <FONT SIZE=4><i><p><a>Aquí podrás administrar los <u>Grupos de Usuarios</u>.</u></a></p></i></font>
-              <br>
-							<p><a><i>Editar Grupo:  &nbsp;<i></a>
-                <select id="usuario"; name="usuario"; style="width:200px"; onchange="updateView(this.options[this.selectedIndex].value);">
-                  <option> Seleccione grupo... </option>
+          <br>
+	  <p><a><i>Editar Grupo:  &nbsp;<i></a>
+          <select id="usuario"; name="usuario"; style="width:200px"; onchange="updateView(this.options[this.selectedIndex].value);">
+              <option> Seleccione grupo... </option>
 
                   <?php
                     // Connection info. file
@@ -120,213 +120,213 @@
                     }
                   ?>
 
-                </select>
+            </select>
 
-                <?php
+	    <?php
 
-                  $url = $_SERVER['REQUEST_URI'];
-                  $user_group = explode("user_group=Grupo", $url);
+		  $url = $_SERVER['REQUEST_URI'];
+		  $user_group = explode("user_group=Grupo", $url);
 
-                  if (isset($user_group[1])) {
-                    $user_group = str_replace('%20'," ",$user_group[1]);
+		  if (isset($user_group[1])) {
+		    $user_group = str_replace('%20'," ",$user_group[1]);
 
-                    echo "<br><br><FONT SIZE=4><p><b><a><i>Usuarios asignados al grupo <b>Grupo$user_group</b>. <i></a></b></p></FONT>";
-                    echo "<FONT SIZE=2><i><p><a>ATENCIÓN. Si eliminas todos los usuarios de un grupo, este desaparecerá automáticamente (y sus aginaciones a Grupos de Dispositivos).</a></p></i></font><br>";
+		    echo "<br><br><FONT SIZE=4><p><b><a><i>Usuarios asignados al grupo <b>Grupo$user_group</b>. <i></a></b></p></FONT>";
+		    echo "<FONT SIZE=2><i><p><a>ATENCIÓN. Si eliminas todos los usuarios de un grupo, este desaparecerá automáticamente (y sus aginaciones a Grupos de Dispositivos).</a></p></i></font><br>";
 
-                    $result = mysqli_query($conn, "SELECT username FROM user WHERE user_group_id = '$user_group' ORDER BY username ASC");
-                    while ($row = mysqli_fetch_array($result)) {
-                      printf("<form action='' method='post'>
-                              <p style='margin-left: 2em'> <label> • <b>%s</b> &nbsp; - &nbsp;</label>
-                              <input style='background-color:red;' name='nameUser' value='%s' hidden/>
-                              <input type='submit' class='large red button' name='removeUser' value='ELIMINAR     ' />
+		    $result = mysqli_query($conn, "SELECT username FROM user WHERE user_group_id = '$user_group' ORDER BY username ASC");
+		    while ($row = mysqli_fetch_array($result)) {
+		      printf("<form action='' method='post'>
+			      <p style='margin-left: 2em'> <label> • <b>%s</b> &nbsp; - &nbsp;</label>
+			      <input style='background-color:red;' name='nameUser' value='%s' hidden/>
+			      <input type='submit' class='large red button' name='removeUser' value='ELIMINAR     ' />
 
-                              ", $row[0], $row[0]);
-                      printf("</form>");
-                    }
+			      ", $row[0], $row[0]);
+		      printf("</form>");
+		    }
 
-                    if($_SERVER['REQUEST_METHOD'] == "POST" and isset($_POST['removeUser'])) {
+		    if($_SERVER['REQUEST_METHOD'] == "POST" and isset($_POST['removeUser'])) {
 
-                      echo "<script> document.querySelector('.pageCover').classList.remove('hidden'); </script>";
-
-
-                      $userName = $_POST['nameUser'];
+		      echo "<script> document.querySelector('.pageCover').classList.remove('hidden'); </script>";
 
 
-                      echo "<div id='dialog'>";
-       	               echo "<div id='dialog-bg'>";
-              	            echo "<div id='dialog-title'>¿Estás seguro/a de quieres hacer esto?</div>";
-                             echo "<div id='dialog-description'>Recuerda que una vez confirmes se eliminará a <b>$userName</b> del grupo <b>Grupo$user_group</b>.</div>";
-                             echo "<div id='dialog-buttons'>";
-                             echo "<form action='' method='post'>";
-                             echo "<input style='background-color:red;' name='nameUsuario' value='$userName' hidden/>";
-                             echo "<input type='submit' name='confirm' class='large green button' value='¡Sí, quiero hacerlo!'>";
-                             echo "<a href='$url' class='large red button'>Mejor no lo hago.</a>";
-                             echo "</form>";
-       		               echo "</div>";
-       	              echo "</div>";
-                     echo "</div>";
-                     echo "<div class='pageCover'></div>";
-                    }
-
-                   if($_SERVER['REQUEST_METHOD'] == "POST" and isset($_POST['confirm'])) {
-
-                      $user =  $_POST['nameUsuario'];
-                      $assign = false;
-                      $delGroup = false;
-
-                      $result = mysqli_query($conn, "SELECT user_group_id FROM user WHERE username = '$user'");
-                      while ($row = mysqli_fetch_array($result)) {
-                          $result1 = mysqli_query($conn, "SELECT user_group_id, username FROM user WHERE user_group_id = '$row[0]'");
-                              if (mysqli_num_rows($result1)==1) {
-                                  $delete = mysqli_query($conn, "UPDATE user SET user_group_id = NULL WHERE username = '$user'");
-                                  
-                                  $delGroup = true;
-                                  while ($row1 = mysqli_fetch_array($result1)) {
-                                    $assignation = mysqli_query($conn, "SELECT id FROM user_group WHERE id='$row1[0]' AND device_group_id_assigned IS NOT NULL");
-                                    if (mysqli_num_rows($assignation)!=0) {
-                                      $assign = true;
-                                      while ($row1 = mysqli_fetch_array($assignation)){
-                                         $deviceAssign = $row1[0];
-                                         $delete1 = mysqli_query($conn, "UPDATE user_group SET device_group_id_assigned = NULL WHERE id='$row1[0]'");
-                                         if (!$delete1)
-                                           die('Invalid query: ' . mysql_error());
-                                      }
-                                    }
-                                    $delete2 = mysqli_query($conn, "DELETE FROM user_group WHERE Id='$row[0]'");
-                                        if (!$delete2)
-                                          die('Invalid query: ' . mysql_error());
-                                  }
-                              } else
-                                  $delete = mysqli_query($conn, "UPDATE user SET user_group_id = NULL WHERE username = '$user'");
-                     }
-
-                      if (!$delete) {
-                        die('Invalid query: ' . mysql_error());
-                      } else {
-                        echo "<div id='dialog'>";
-                         echo "<div id='dialog-bg'>";
-                              echo "<div id='dialog-title'>¡Listo!</div>";
-                               echo "<div id='dialog-description'><b>$user</b> eliminado del grupo <b>Grupo$user_group</b>.</div>";
-                               if ($delGroup) {
-                                 echo "<div id='dialog-description'>Al quedar sin miembros, se eliminó el grupo <b>Grupo$user_group</b>";
-                                 if ($assign)
-                                  echo " y su asignación al grupo <b>$deviceAssign</b>";
-                                 echo ".</div>";
-                                 echo "<div id='dialog-buttons'>";
-                                 echo "<a href='user-groups' class='large green button'>Aceptar</a>";
-                               }
-                               else {
-                                 echo "<div id='dialog-buttons'>";
-                                 echo "<a href='$url' class='large green button'>Aceptar</a>";
-                               }
-                           echo "</div>";
-                        echo "</div>";
-                       echo "</div>";
-                       echo "<div class='pageCover'></div>";
-                      }
-
-                    }
-
-                    if($_SERVER['REQUEST_METHOD'] == "POST" and isset($_POST['add'])) {
-                      if(!empty($_POST['users'])) {
-
-                          $userName  = $_POST['users'];
-                          echo "<div id='dialog'>";
-                           echo "<div id='dialog-bg'>";
-                                 echo "<div id='dialog-title'>¿Estás seguro/a de quieres hacer esto?</div>";
-                                 echo "<div id='dialog-description'>Recuerda que una vez confirmes se añadirá a ";
-                                 $max = sizeof($userName);
-                                 if ($max == 1)
-                                    echo "<b>$userName[0]</b> ";
-                                 else {
-                                   echo "los usuarios ";
-                                   $counter = 0;
-                                   foreach($userName as $selected) {
-                                      $counter+=1;
-                                      if ($counter == $max-1)
-                                        echo "<b>$selected</b> y ";
-                                      else
-                                        echo "<b>$selected</b>, ";
-                                    }
-                                 }
-                                 echo "al grupo <b>Grupo$user_group</b>.</div>";
-                                 echo "<div id='dialog-buttons'>";
-                                 echo "<form action='' method='post'>";
-                                 $usuariosArray = implode("|",$userName);
-                                 echo "<input style='background-color:red;' name='nameUsuarios' value='$usuariosArray' hidden/>";
-                                 echo "<input type='submit' name='confirmar' class='large green button' value='¡Sí, quiero hacerlo!'>";
-                                 echo "<a href='$url' class='large red button'>Mejor no lo hago.</a>";
-                                 echo "</form>";
-                             echo "</div>";
-                          echo "</div>";
-                         echo "</div>";
-                         echo "<div class=' pageCover'></div>";
-                       } else {
-                             echo "<div id='dialog'>";
-                              echo "<div id='dialog-bg'>";
-                                   echo "<div id='dialog-title'>¡Ups!</div>";
-                                    echo "<div id='dialog-description'>Por favor, para poder añadir usuarios al grupo <b>Grupo$user_group</b> es necesario que, al menos, selecciones un usuario.</div>";
-                                      echo "<div id='dialog-buttons'>";
-                                      echo "<a href='$url' class='large green button'>Aceptar</a>";
-                                 echo "</div>";
-                               echo "</div>";
-                              echo "</div>";
-                              echo "<div class=' pageCover'></div>";
-                       }
-                    }
+		      $userName = $_POST['nameUser'];
 
 
-                     if($_SERVER['REQUEST_METHOD'] == "POST" and isset($_POST['nameUsuarios'])) {
+		      echo "<div id='dialog'>";
+		       echo "<div id='dialog-bg'>";
+			    echo "<div id='dialog-title'>¿Estás seguro/a de quieres hacer esto?</div>";
+			     echo "<div id='dialog-description'>Recuerda que una vez confirmes se eliminará a <b>$userName</b> del grupo <b>Grupo$user_group</b>.</div>";
+			     echo "<div id='dialog-buttons'>";
+			     echo "<form action='' method='post'>";
+			     echo "<input style='background-color:red;' name='nameUsuario' value='$userName' hidden/>";
+			     echo "<input type='submit' name='confirm' class='large green button' value='¡Sí, quiero hacerlo!'>";
+			     echo "<a href='$url' class='large red button'>Mejor no lo hago.</a>";
+			     echo "</form>";
+			       echo "</div>";
+		      echo "</div>";
+		     echo "</div>";
+		     echo "<div class='pageCover'></div>";
+		    }
 
-                        $usuariosArray = explode("|", $_POST['nameUsuarios']);
+		   if($_SERVER['REQUEST_METHOD'] == "POST" and isset($_POST['confirm'])) {
 
-                        foreach($usuariosArray as $selected){
+		      $user =  $_POST['nameUsuario'];
+		      $assign = false;
+		      $delGroup = false;
 
-                          $add = mysqli_query($conn, "UPDATE user SET user_group_id = '$user_group' WHERE username = '$selected'");
-                          if (!$add) {
-                            die('Invalid query: ' . mysql_error());
-                          } else
-                            header("Refresh:0");
-                        }
-                    }
+		      $result = mysqli_query($conn, "SELECT user_group_id FROM user WHERE username = '$user'");
+		      while ($row = mysqli_fetch_array($result)) {
+			  $result1 = mysqli_query($conn, "SELECT user_group_id, username FROM user WHERE user_group_id = '$row[0]'");
+			      if (mysqli_num_rows($result1)==1) {
+				  $delete = mysqli_query($conn, "UPDATE user SET user_group_id = NULL WHERE username = '$user'");
 
-                    if (mysqli_num_rows($result)==0)
-                        echo "<p style='margin-left: 2em'> El Grupo$user_group no tiene ningún usuario asignado.";
+				  $delGroup = true;
+				  while ($row1 = mysqli_fetch_array($result1)) {
+				    $assignation = mysqli_query($conn, "SELECT id FROM user_group WHERE id='$row1[0]' AND device_group_id_assigned IS NOT NULL");
+				    if (mysqli_num_rows($assignation)!=0) {
+				      $assign = true;
+				      while ($row1 = mysqli_fetch_array($assignation)){
+					 $deviceAssign = $row1[0];
+					 $delete1 = mysqli_query($conn, "UPDATE user_group SET device_group_id_assigned = NULL WHERE id='$row1[0]'");
+					 if (!$delete1)
+					   die('Invalid query: ' . mysql_error());
+				      }
+				    }
+				    $delete2 = mysqli_query($conn, "DELETE FROM user_group WHERE Id='$row[0]'");
+					if (!$delete2)
+					  die('Invalid query: ' . mysql_error());
+				  }
+			      } else
+				  $delete = mysqli_query($conn, "UPDATE user SET user_group_id = NULL WHERE username = '$user'");
+		     }
 
-                    echo "<br><br><FONT SIZE=4><p><b><a><i>Aquí puedes asignar más usuarios al grupo <b>Grupo$user_group</b>. <i></a></b></p></FONT>";
+		      if (!$delete) {
+			die('Invalid query: ' . mysql_error());
+		      } else {
+			echo "<div id='dialog'>";
+			 echo "<div id='dialog-bg'>";
+			      echo "<div id='dialog-title'>¡Listo!</div>";
+			       echo "<div id='dialog-description'><b>$user</b> eliminado del grupo <b>Grupo$user_group</b>.</div>";
+			       if ($delGroup) {
+				 echo "<div id='dialog-description'>Al quedar sin miembros, se eliminó el grupo <b>Grupo$user_group</b>";
+				 if ($assign)
+				  echo " y su asignación al grupo <b>$deviceAssign</b>";
+				 echo ".</div>";
+				 echo "<div id='dialog-buttons'>";
+				 echo "<a href='user-groups' class='large green button'>Aceptar</a>";
+			       }
+			       else {
+				 echo "<div id='dialog-buttons'>";
+				 echo "<a href='$url' class='large green button'>Aceptar</a>";
+			       }
+			   echo "</div>";
+			echo "</div>";
+		       echo "</div>";
+		       echo "<div class='pageCover'></div>";
+		      }
 
-                    $result = mysqli_query($conn, "SELECT username FROM user
-                                                   WHERE user_group_id IS NULL AND username != 'admin' ORDER BY username DESC");
+		    }
 
-                    if (mysqli_num_rows($result)==0)
-                       echo "<p style='margin-left: 2em; color:red'> Lo sentimos, todos los usuarios ya pertenecen a algún grupo.";
-                    else {
-                        echo "<FONT SIZE=2><i><p><a>Puedes seleccionar varios a la vez con la tecla 'Ctrl'.</a></p></i></font>";
-                        echo "<form action='' method='post'>
-                                <select id='devices' name='users[]' style='width:200px' size=6 onchange='' multiple='multiple'>";
+		    if($_SERVER['REQUEST_METHOD'] == "POST" and isset($_POST['add'])) {
+		      if(!empty($_POST['users'])) {
+
+			  $userName  = $_POST['users'];
+			  echo "<div id='dialog'>";
+			   echo "<div id='dialog-bg'>";
+				 echo "<div id='dialog-title'>¿Estás seguro/a de quieres hacer esto?</div>";
+				 echo "<div id='dialog-description'>Recuerda que una vez confirmes se añadirá a ";
+				 $max = sizeof($userName);
+				 if ($max == 1)
+				    echo "<b>$userName[0]</b> ";
+				 else {
+				   echo "los usuarios ";
+				   $counter = 0;
+				   foreach($userName as $selected) {
+				      $counter+=1;
+				      if ($counter == $max-1)
+					echo "<b>$selected</b> y ";
+				      else
+					echo "<b>$selected</b>, ";
+				    }
+				 }
+				 echo "al grupo <b>Grupo$user_group</b>.</div>";
+				 echo "<div id='dialog-buttons'>";
+				 echo "<form action='' method='post'>";
+				 $usuariosArray = implode("|",$userName);
+				 echo "<input style='background-color:red;' name='nameUsuarios' value='$usuariosArray' hidden/>";
+				 echo "<input type='submit' name='confirmar' class='large green button' value='¡Sí, quiero hacerlo!'>";
+				 echo "<a href='$url' class='large red button'>Mejor no lo hago.</a>";
+				 echo "</form>";
+			     echo "</div>";
+			  echo "</div>";
+			 echo "</div>";
+			 echo "<div class=' pageCover'></div>";
+		       } else {
+			     echo "<div id='dialog'>";
+			      echo "<div id='dialog-bg'>";
+				   echo "<div id='dialog-title'>¡Ups!</div>";
+				    echo "<div id='dialog-description'>Por favor, para poder añadir usuarios al grupo <b>Grupo$user_group</b> es necesario que, al menos, selecciones un usuario.</div>";
+				      echo "<div id='dialog-buttons'>";
+				      echo "<a href='$url' class='large green button'>Aceptar</a>";
+				 echo "</div>";
+			       echo "</div>";
+			      echo "</div>";
+			      echo "<div class=' pageCover'></div>";
+		       }
+		    }
 
 
-                            while ($row = mysqli_fetch_array($result)) {
-                              printf("<option>%s</option>", $row[0]);
-                            }
+		     if($_SERVER['REQUEST_METHOD'] == "POST" and isset($_POST['nameUsuarios'])) {
 
-                            echo "</select>";
-                            echo "<br><br><input type='submit' name='add' value='Añadir Usuario'>
-                                  </form>";
+			$usuariosArray = explode("|", $_POST['nameUsuarios']);
+
+			foreach($usuariosArray as $selected){
+
+			  $add = mysqli_query($conn, "UPDATE user SET user_group_id = '$user_group' WHERE username = '$selected'");
+			  if (!$add) {
+			    die('Invalid query: ' . mysql_error());
+			  } else
+			    header("Refresh:0");
+			}
+		    }
+
+		    if (mysqli_num_rows($result)==0)
+			echo "<p style='margin-left: 2em'> El Grupo$user_group no tiene ningún usuario asignado.";
+
+		    echo "<br><br><FONT SIZE=4><p><b><a><i>Aquí puedes asignar más usuarios al grupo <b>Grupo$user_group</b>. <i></a></b></p></FONT>";
+
+		    $result = mysqli_query($conn, "SELECT username FROM user
+						   WHERE user_group_id IS NULL AND username != 'admin' ORDER BY username DESC");
+
+		    if (mysqli_num_rows($result)==0)
+		       echo "<p style='margin-left: 2em; color:red'> Lo sentimos, todos los usuarios ya pertenecen a algún grupo.";
+		    else {
+			echo "<FONT SIZE=2><i><p><a>Puedes seleccionar varios a la vez con la tecla 'Ctrl'.</a></p></i></font>";
+			echo "<form action='' method='post'>
+				<select id='devices' name='users[]' style='width:200px' size=6 onchange='' multiple='multiple'>";
 
 
-                    }
-                    echo "<br>";
-                  }
+			    while ($row = mysqli_fetch_array($result)) {
+			      printf("<option>%s</option>", $row[0]);
+			    }
 
-                  mysqli_close($conn);
-                  
-                ?>
+			    echo "</select>";
+			    echo "<br><br><input type='submit' name='add' value='Añadir Usuario'>
+				  </form>";
+
+
+		    }
+		    echo "<br>";
+		  }
+
+		  mysqli_close($conn);
+
+		?>
 
             </p>
           <br>
       </div>
-		</div>
+    </div>
 
     <nav class='menuNew container'>
       <ul>
@@ -335,8 +335,8 @@
       </ul>
     </nav>
 
-	</body>
+  </body>
 
-  <?php include "$root/web/footer.php"; ?>
+<?php include "$root/web/footer.php"; ?>
   
 </html>
