@@ -42,17 +42,17 @@
 <!doctype html>
 <html lang="es">
 
-	<head>
+  <head>
 
-		<title>Panel Admin ~ Log</title>
+    <title>Panel Admin ~ Log</title>
     <link rel="icon" type="image/png" href="/images/icon.png" />
     <?php include "$root/web/header.php"; ?>
 
-		<!-- Required meta tags -->
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-		<!-- CSS -->
+    <!-- CSS -->
     <link rel="stylesheet" href="../admin/css/admin.css">
     <link rel="stylesheet" href="../css/bootstrap.min.css">
 
@@ -68,21 +68,21 @@
   
   </head>
 
-	<body background="/images/background.jpg">
+  <body background="/images/background.jpg">
 
     <br>
     <nav class='menuHK container'><ul>
-    <li><a href="registered-users">Usuarios</a>|</li>
-    <li><a href="devices">Dispositivos</a>|</li>
-    <li><a href="logs">Logs</a>|</li>
-    <li><a href="assignments">Asignaciones Users/Devices</a>|</li>
-    <li><a href="reset-devices">Resetear Dispositivos</a></li>
+	    <li><a href="registered-users">Usuarios</a>|</li>
+	    <li><a href="devices">Dispositivos</a>|</li>
+	    <li><a href="logs">Logs</a>|</li>
+	    <li><a href="assignments">Asignaciones Users/Devices</a>|</li>
+	    <li><a href="reset-devices">Resetear Dispositivos</a></li>
     </ul></nav>
 
-		<div class="container">
+    <div class="container">
 
-		  <div class='alert alert-success mt-4' role='alert'>
-						<FONT SIZE=4><i><p><a>Aquí puedes ver los <u>logs</u> disponibles de los Dispositivos</u>.</a></p></i></font>
+       <div class='alert alert-success mt-4' role='alert'>
+	      <FONT SIZE=4><i><p><a>Aquí puedes ver los <u>logs</u> disponibles de los Dispositivos</u>.</a></p></i></font>
               <br>
               <?php
 
@@ -198,12 +198,12 @@
             ?>
           
       </div>
-		</div>
+    </div>
     <br>
     <br>
 
-	</body>
+  </body>
 
-  <?php include "$root/web/footer.php"; ?>
+<?php include "$root/web/footer.php"; ?>
   
 </html>
