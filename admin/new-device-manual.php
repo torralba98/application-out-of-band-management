@@ -42,7 +42,7 @@
 <!doctype html>
 <html lang="es">
 
-	<head>
+  <head>
 
     <title>Panel Admin ~ Crear Dispositivo Manualmente</title>
     <link rel="icon" type="image/png" href="/images/icon.png" />
@@ -50,12 +50,12 @@
     <link rel="stylesheet" href="../css/alerts.css">
     <link rel="stylesheet" href="../admin/css/admin.css">
 
-		<!-- Required meta tags -->
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-		<!-- CSS -->
-		<link rel="stylesheet" href="../css/bootstrap.min.css">
+    <!-- CSS -->
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
 
     <style>
       .pageCover {
@@ -67,40 +67,40 @@
         top:0;
         left:0;
       }
-    </style>
+     </style>
   
   </head>
 
-	<body background="/images/background.jpg">
+  <body background="/images/background.jpg">
 
     <br>
     <nav class='menuHK container'><ul>
-    <li><a href="registered-users">Usuarios</a>|</li>
-    <li><a href="devices">Dispositivos</a>|</li>
-    <li><a href="logs">Logs</a>|</li>
-    <li><a href="assignments">Asignaciones Users/Devices</a>|</li>
-    <li><a href="reset-devices">Resetear Dispositivos</a></li>
+	    <li><a href="registered-users">Usuarios</a>|</li>
+	    <li><a href="devices">Dispositivos</a>|</li>
+	    <li><a href="logs">Logs</a>|</li>
+	    <li><a href="assignments">Asignaciones Users/Devices</a>|</li>
+	    <li><a href="reset-devices">Resetear Dispositivos</a></li>
     </ul></nav>
 
-		<div class="container">
+    <div class="container">
 
-		  <div id='all' class='alert alert-success mt-4' role='alert'>
+      <div id='all' class='alert alert-success mt-4' role='alert'>
           <div><a id='volver' href='new-device' class='large green button'>Volver</a></div>
           <FONT SIZE=4><i><p id='title'><a>Aquí podrás crear un <u>dispositivo manualmente</u>.</u></a></p></i></font>
-              <br>
+          <br>
 
-              <form id='first' action='' method='post'>
-                <p><b>Primero será necesario crear una nueva entrada en la base de datos -</b>
-                  <input type='submit' class='cont large green button' name='newDevice' value='Crear Entrada     ' onclick=''/>
-                </p>
-            </form>
+          <form id='first' action='' method='post'>
+              <p><b>Primero será necesario crear una nueva entrada en la base de datos -</b>
+              <input type='submit' class='cont large green button' name='newDevice' value='Crear Entrada     ' onclick=''/>
+              </p>
+           </form>
 
-            <div id='code'>
-            </div>
+           <div id='code'>
+           </div>
 
-                <?php
+           <?php
 
-                if($_SERVER['REQUEST_METHOD'] == "POST" and isset($_POST['newDevice'])) {
+              if($_SERVER['REQUEST_METHOD'] == "POST" and isset($_POST['newDevice'])) {
 
                   // Connection variables
                   $conn = mysqli_connect($dbhost, $dbuser, $dbpass, $dbname);
@@ -151,15 +151,15 @@
                   mysqli_close($conn);
                 }
 
-                ?>
+             ?>
 
               </p>
               <br>
         </div>
-		</div>
+     </div>
 
-	</body>
+  </body>
 
-  <?php include "$root/web/footer.php"; ?>
+<?php include "$root/web/footer.php"; ?>
   
 </html>
