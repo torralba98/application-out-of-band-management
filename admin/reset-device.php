@@ -42,7 +42,7 @@
 <!doctype html>
 <html lang="es">
 
-	<head>
+ <head>
 
    <title>Panel Admin ~ Resetear Dispositivo</title>
    <link rel="icon" type="image/png" href="/images/icon.png" />
@@ -50,14 +50,14 @@
    <link rel="stylesheet" href="../css/alerts.css">
    <link rel="stylesheet" href="../admin/css/admin.css">
 
-		<!-- Required meta tags -->
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+   <!-- Required meta tags -->
+   <meta charset="utf-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-		<!--CSS -->
-		<link rel="stylesheet" href="../css/bootstrap.min.css">
+   <!--CSS -->
+   <link rel="stylesheet" href="../css/bootstrap.min.css">
 
-    <script>
+   <script>
 
       function isSelected(device){
         window.location = "reset-device?device=" + device;
@@ -72,9 +72,9 @@
         document.getElementById("resetear").disabled = true;
       }
 
-    </script>
+   </script>
 
-    <style>
+   <style>
       .pageCover {
         position:fixed;
         z-index:0;
@@ -84,28 +84,28 @@
         top:0;
         left:0;
       }
-    </style>
+   </style>
   
   </head>
 
-	<body background="/images/background.jpg">
+  <body background="/images/background.jpg">
 
     <br>
     <nav class='menuHK container'><ul>
-    <li><a href="registered-users">Usuarios</a>|</li>
-    <li><a href="devices">Dispositivos</a>|</li>
-    <li><a href="logs">Logs</a>|</li>
-    <li><a href="assignments">Asignaciones Users/Devices</a>|</li>
-    <li><a href="reset-devices">Resetear Dispositivos</a></li>
+	    <li><a href="registered-users">Usuarios</a>|</li>
+	    <li><a href="devices">Dispositivos</a>|</li>
+	    <li><a href="logs">Logs</a>|</li>
+	    <li><a href="assignments">Asignaciones Users/Devices</a>|</li>
+	    <li><a href="reset-devices">Resetear Dispositivos</a></li>
     </ul></nav>
 
-		<div class="container">
+    <div class="container">
 
-		  <div id='all' class='alert alert-success mt-4' role='alert'>
+      <div id='all' class='alert alert-success mt-4' role='alert'>
           <div><a id='volver' href='reset-devices' class='large green button'>Volver</a></div>
-          <FONT SIZE=4><i><p id='title'><a>Aquí podrás resetear un <u>dispositivo en concreto</u>.</u></a></p></i></font>
+              <FONT SIZE=4><i><p id='title'><a>Aquí podrás resetear un <u>dispositivo en concreto</u>.</u></a></p></i></font>
               <br>
-							<p><a id="deviceY"><i>Seleccionar Dispositivo:  <i></a>
+		<p><a id="deviceY"><i>Seleccionar Dispositivo:  <i></a>
                 <select id="deviceX"; name="deviceX"; style="width:200px"; onchange="isSelected(this.options[this.selectedIndex].value);">
                   <option> Seleccione dispositivo... </option>
 
@@ -202,11 +202,11 @@
 
               </p>
             <br>
-		  </div>
+	</div>
     </div>
 
-	</body>
+  </body>
 
-  <?php include "$root/web/footer.php"; ?>
+<?php include "$root/web/footer.php"; ?>
   
 </html>
