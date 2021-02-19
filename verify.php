@@ -12,7 +12,7 @@
       
   	<?php 
   	  $username = ""; 
-      include "$root/web/header.php"; 
+      	  include "$root/web/header.php"; 
   	?>
   	 
   	<!-- Required meta tags -->
@@ -32,10 +32,10 @@
   	      <FONT SIZE=3><p><a><b>VERIFICACIÓN DE CUENTA</b></a></p></font>
   	      
   	      <?php
-        		  // Connection info. file
-        		  include './web_config/configuration_properties.php';
+		  // Connection info. file
+		  include './web_config/configuration_properties.php';
 
-        		  // Connection variables
+              // Connection variables
               $conn = mysqli_connect($dbhost, $dbuser, $dbpass, $dbname);
 
               // Check connection
@@ -78,17 +78,16 @@
               } else
                 header('Location: index');
 
-          ?>
+              ?>
 
-          </select>
+              </select>
 
-          <?php
-            mysqli_close($conn);
-          ?>
+              <?php
+                 mysqli_close($conn);
+              ?>
 
-            </p>
-  	    </div>
   	  </div>
+  	 </div>
   	    
   	</body>
 	
