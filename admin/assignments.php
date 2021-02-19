@@ -42,18 +42,18 @@
 <!doctype html>
 <html lang="es">
 
-	<head>
+  <head>
 
-		<title>Panel Admin ~ Administrar Asignaciones Usuarios / Dispositivos</title>
+    <title>Panel Admin ~ Administrar Asignaciones Usuarios / Dispositivos</title>
     <link rel="icon" type="image/png" href="/images/icon.png" />
     <?php include "$root/web/header.php"; ?>
 
-		<!-- Required meta tags -->
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-		<!-- Bootstrap CSS -->
-		<link rel="stylesheet" href="../css/bootstrap.min.css">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
     <link rel="stylesheet" href="../css/alerts.css">
     <link rel="stylesheet" href="../admin/css/admin.css">
 
@@ -87,18 +87,18 @@
 
    <br>
    <nav class='menuHK container'><ul>
-   <li><a href="registered-users">Usuarios</a>|</li>
-   <li><a href="devices">Dispositivos</a>|</li>
-   <li><a href="logs">Logs</a>|</li>
-   <li><a href="assignments">Asignaciones Users/Devices</a>|</li>
-   <li><a href="reset-devices">Resetear Dispositivos</a></li>
+	   <li><a href="registered-users">Usuarios</a>|</li>
+	   <li><a href="devices">Dispositivos</a>|</li>
+	   <li><a href="logs">Logs</a>|</li>
+	   <li><a href="assignments">Asignaciones Users/Devices</a>|</li>
+	   <li><a href="reset-devices">Resetear Dispositivos</a></li>
    </ul></nav>
 
-		<div class="container">
+   <div class="container">
 
-		  <div class='alert alert-success mt-4' role='alert'>
-						<FONT SIZE=4><i><p><a>Aquí podrás crear nuevas <u>asignaciones entre Grupos de Usuarios y Grupos de Dispositivos.</u></a></p></i></font>
-              <br>
+     <div class='alert alert-success mt-4' role='alert'>
+	<FONT SIZE=4><i><p><a>Aquí podrás crear nuevas <u>asignaciones entre Grupos de Usuarios y Grupos de Dispositivos.</u></a></p></i></font>
+         <br>
 
                 <?php
 
@@ -224,7 +224,7 @@
               </p>
             <br>
       </div>
-		</div>
+    </div>
 
     <nav class='menuNew container'>
       <ul>
@@ -232,7 +232,7 @@
       </ul>
     </nav>
 
-	</body>
+  </body>
 
   <?php include "$root/web/footer.php"; ?>
   
