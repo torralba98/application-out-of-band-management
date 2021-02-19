@@ -42,22 +42,22 @@
 <!doctype html>
 <html lang="es">
 
-	<head>
+ <head>
 
-	 <title>Panel Admin ~ Administrar Grupos Dispositivos</title>
+   <title>Panel Admin ~ Administrar Grupos Dispositivos</title>
    <link rel="icon" type="image/png" href="/images/icon.png" />
    <?php include "$root/web/header.php"; ?>
 
-		<!-- Required meta tags -->
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+   <!-- Required meta tags -->
+   <meta charset="utf-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-		<!-- CSS -->
-		<link rel="stylesheet" href="../css/bootstrap.min.css">
-    <link rel="stylesheet" href="../css/alerts.css">
-    <link rel="stylesheet" href="../admin/css/admin.css">
+   <!-- CSS -->
+   <link rel="stylesheet" href="../css/bootstrap.min.css">
+   <link rel="stylesheet" href="../css/alerts.css">
+   <link rel="stylesheet" href="../admin/css/admin.css">
 
-    <style>
+   <style>
       .pageCover {
         position:fixed;
         z-index:0;
@@ -67,36 +67,36 @@
         top:0;
         left:0;
       }
-    </style>
+   </style>
 
-    <script>
+   <script>
 
       function updateView(deviceGroup) {
            window.location = "device-groups?deviceGroup=" + deviceGroup;
       }
 
-    </script>
+   </script>
 
   </head>
 
-	<body background="/images/background.jpg">
+  <body background="/images/background.jpg">
 
     <br>
     <nav class='menuHK container'><ul>
-    <li><a href="registered-users">Usuarios</a>|</li>
-    <li><a href="devices">Dispositivos</a>|</li>
-    <li><a href="logs">Logs</a>|</li>
-    <li><a href="assignments">Asignaciones Users/Devices</a>|</li>
-    <li><a href="reset-devices">Resetear Dispositivos</a></li>
+	    <li><a href="registered-users">Usuarios</a>|</li>
+	    <li><a href="devices">Dispositivos</a>|</li>
+	    <li><a href="logs">Logs</a>|</li>
+	    <li><a href="assignments">Asignaciones Users/Devices</a>|</li>
+	    <li><a href="reset-devices">Resetear Dispositivos</a></li>
     </ul></nav>
 
-		<div class="container">
+    <div class="container">
 
-		  <div class='alert alert-success mt-4' role='alert'>
+      <div class='alert alert-success mt-4' role='alert'>
           <div><a id='volver' href='devices' class='large green button'>Volver</a></div>
           <FONT SIZE=4><i><p><a>Aquí podrás administrar los <u>Grupos de Dispositivos</u>.</u></a></p></i></font>
-              <br>
-							<p><a><i>Editar Grupo: &nbsp;<i></a>
+          <br>
+	     <p><a><i>Editar Grupo: &nbsp;<i></a>
                 <select id="usuario"; name="usuario"; style="width:200px"; onchange="updateView(this.options[this.selectedIndex].value);">
                   <option> Seleccione grupo... </option>
 
@@ -336,8 +336,8 @@
                 ?>
 
               </p>
-              <br>
-		  </div>
+             <br>
+	</div>
     </div>
 
     <nav class='menuNew container'>
@@ -347,8 +347,8 @@
       </ul>
     </nav>
 
-	</body>
+  </body>
 
-  <?php include "$root/web/footer.php"; ?>
+<?php include "$root/web/footer.php"; ?>
   
 </html>
