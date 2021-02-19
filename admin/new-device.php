@@ -43,18 +43,18 @@
 
 <!doctype html>
 <html lang="es">
+ 
+  <head>
 
-	<head>
-
-		<title>Panel Admin ~ Crear Dispositivo</title>
+    <title>Panel Admin ~ Crear Dispositivo</title>
     <link rel="icon" type="image/png" href="/images/icon.png" />
     <?php include "$root/web/header.php"; ?>
 
-		<!-- Required meta tags -->
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-		<!-- CSS -->
+    <!-- CSS -->
     <link rel="stylesheet" href="../admin/css/admin.css">
     <link rel="stylesheet" href="../css/alerts.css">
     <link rel="stylesheet" href="../css/bootstrap.min.css">
@@ -68,7 +68,7 @@
 
     </script>
 
-     <style>
+    <style>
 
         .example {
              width: 400px;
@@ -92,24 +92,24 @@
 
   </head>
 
-	<body background="/images/background.jpg">
+  <body background="/images/background.jpg">
 
     <br>
     <nav class='menuHK container'><ul>
-    <li><a href="registered-users">Usuarios</a>|</li>
-    <li><a href="devices">Dispositivos</a>|</li>
-    <li><a href="logs">Logs</a>|</li>
-    <li><a href="assignments">Asignaciones Users/Devices</a>|</li>
-    <li><a href="reset-devices">Resetear Dispositivos</a></li>
+	<li><a href="registered-users">Usuarios</a>|</li>
+	<li><a href="devices">Dispositivos</a>|</li>
+	<li><a href="logs">Logs</a>|</li>
+	<li><a href="assignments">Asignaciones Users/Devices</a>|</li>
+	<li><a href="reset-devices">Resetear Dispositivos</a></li>
     </ul></nav>
 
-		<div class="container">
-		  <div class='alert alert-success mt-4' role='alert'>
+    <div class="container">
+      <div class='alert alert-success mt-4' role='alert'>
 
         <div><a id='volver' href='devices' class='large green button'>Volver</a></div>
 
-						<FONT SIZE=4><i><p><a>Aquí podrás crear un <u>nuevo dispositivo</u>.</a></p></i></font>
-                <?php
+	<FONT SIZE=4><i><p><a>Aquí podrás crear un <u>nuevo dispositivo</u>.</a></p></i></font>
+        <?php
 
                 if($_SERVER['REQUEST_METHOD'] == "POST" and isset($_POST['confirm'])) {
 
@@ -279,9 +279,10 @@
                   <p style='margin-left: 2em; display:inline';> <input type='reset' class='large black button' value='Restablecer'> </p>
                 </form><br>
       </div>
-		</div>
-	</body>
-  <br><br>
+    </div>
+  </body>
+  
+<br><br>
 
   <?php include "$root/web/footer.php"; ?>
   
