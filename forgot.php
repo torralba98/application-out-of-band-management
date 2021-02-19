@@ -33,7 +33,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <!-- CSS -->
-		<link rel="stylesheet" href="../css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
     <link rel="stylesheet" href="css/custom.css">
     <link rel="stylesheet" href="../css/alerts.css">
     
@@ -63,12 +63,12 @@
 
   <body background="/images/background.jpg">
     
-		<div class="container-fluid">
-			<div class="row">
-				<div class="col-lg-12">
-					<div class="card">
-						<div class="loginBox">
-							<img style="vertical-align:middle;margin:0px 0px" src="images/udc-logo.png" class="img-responsive" width="190" height="110">
+    <div class="container-fluid">
+      <div class="row">
+	<div class="col-lg-12">
+	  <div class="card">
+	    <div class="loginBox">
+	      <img style="vertical-align:middle;margin:0px 0px" src="images/udc-logo.png" class="img-responsive" width="190" height="110">
               <h3>Recuperar Contraseña</h3>
               <br>
               
@@ -383,11 +383,11 @@
 
             ?>
 
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
+	</div>
+      </div>
+     </div>
+    </div>
+   </div>
 
 </body>
 
