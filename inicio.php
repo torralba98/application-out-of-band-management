@@ -17,148 +17,148 @@
 	
    <head>
 		
-	<style>
+     <style>
 
-		 #title {
-			background-color: #104a1d;
-			color: #c1d9c7;
-			width: 420px;
-			height: 25px;
-			text-align: center;
-			border-radius: 10px;
-		  }
+	 #title {
+		background-color: #104a1d;
+		color: #c1d9c7;
+		width: 420px;
+		height: 25px;
+		text-align: center;
+		border-radius: 10px;
+	  }
 
-		.alert-success{
-			border-radius: 10px;
-			width: 870px;
-		  }
+	.alert-success{
+		border-radius: 10px;
+		width: 870px;
+	  }
 
-		#deviceOff{
-			margin-left:100px;
-			border-radius: 10px;
-		  }
+	#deviceOff{
+		margin-left:100px;
+		border-radius: 10px;
+	  }
 
-		.dark{
-			border-bottom:solid 1px black; 
-			width:66%;
-			margin: 30px;
-			margin-left:17%;   		   
-		  }
+	.dark{
+		border-bottom:solid 1px black; 
+		width:66%;
+		margin: 30px;
+		margin-left:17%;   		   
+	  }
 
-		.pageCover {
-			position:fixed;
-			z-index:0;
-			background-color:rgba(0,0,0,.25);
-			width:100vw;
-			height:100vh;
-			top:0;
-			left:0;
+	.pageCover {
+		position:fixed;
+		z-index:0;
+		background-color:rgba(0,0,0,.25);
+		width:100vw;
+		height:100vh;
+		top:0;
+		left:0;
+	}
+
+     </style>
+
+     <title>Inicio</title>
+     <link rel="icon" type="image/png" href="/images/icon.png" />
+     <link rel="stylesheet" href="../css/alerts.css">
+     <link rel="stylesheet" href="../css/pop-up.css">
+     <link rel="stylesheet" href="../css/bootstrap.min.css">
+
+     <!-- Required meta tags -->
+     <meta charset="utf-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+     <!-- CSS -->
+     <script src="/jquery/jquery-3.5.1.min.js"></script>
+
+     <script>			
+
+	var ctrlKeyDown = false;
+
+	$(document).ready(function(){    
+		$(document).on("keydown", keydown);
+		$(document).on("keyup", keyup);
+	});
+
+	function keydown(e) { 
+
+		if ((e.which || e.keyCode) == 116 || ((e.which || e.keyCode) == 82 && ctrlKeyDown)) {
+			// Pressing F5 or Ctrl+R
+			e.preventDefault();
+		} else if ((e.which || e.keyCode) == 17) {
+			// Pressing  only Ctrl
+			ctrlKeyDown = true;
 		}
+	};
 
-	</style>
+	function keyup(e){
+		// Key up Ctrl
+		if ((e.which || e.keyCode) == 17) 
+			ctrlKeyDown = false;
+	};
 
-	<title>Inicio</title>
-	<link rel="icon" type="image/png" href="/images/icon.png" />
-	<link rel="stylesheet" href="../css/alerts.css">
-	<link rel="stylesheet" href="../css/pop-up.css">
-	<link rel="stylesheet" href="../css/bootstrap.min.css">
+	function popUp(){
+	  document.getElementById("pop-up").click();
+	}
 
-	<!-- Required meta tags -->
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	if ( window.history.replacein_use ) {
+		window.history.replacein_use( null, null, window.location.href );
+	}
 
-	<!-- CSS -->
-	<script src="/jquery/jquery-3.5.1.min.js"></script>
+	function countDown() {
 
-	<script>			
+		var seg = localStorage.getItem('segs');
+	  var min = localStorage.getItem('mins');
 
-		var ctrlKeyDown = false;
+		if ((seg == 0 && min == 0) || min < 0 || seg < 0 || is_null(min) || is_null(seg)) {
+			seg = 0;
+			min = 3;
+	  }
 
-		$(document).ready(function(){    
-			$(document).on("keydown", keydown);
-			$(document).on("keyup", keyup);
-		});
+	onTimer();
 
-		function keydown(e) { 
+	function onTimer() {
+		document.getElementById('timer').innerHTML = " • Tendrás que esperar <b>" + min + "m " + seg + "s</b> antes de que podamos enviarte otro.";
+		seg--;
+		if (seg < 0 && min == 0) {
+			localStorage.setItem('mins', 0);
+			localStorage.setItem('segs', 0);
+			window.location.href = "inicio";
+		}else {
+		   if (seg == -1){
+			 if (min > 0) {
+				min--;
+				seg = 59;
+			 }
+		    }
 
-			if ((e.which || e.keyCode) == 116 || ((e.which || e.keyCode) == 82 && ctrlKeyDown)) {
-				// Pressing F5 or Ctrl+R
-				e.preventDefault();
-			} else if ((e.which || e.keyCode) == 17) {
-				// Pressing  only Ctrl
-				ctrlKeyDown = true;
-			}
-		};
-
-		function keyup(e){
-			// Key up Ctrl
-			if ((e.which || e.keyCode) == 17) 
-				ctrlKeyDown = false;
-		};
-
-		function popUp(){
-		  document.getElementById("pop-up").click();
+		  setTimeout(onTimer, 1000);
+		  localStorage.setItem('mins', min);
+		  localStorage.setItem('segs', seg);
 		}
+	  }
+	}
+     </script>
 
-		if ( window.history.replacein_use ) {
-			window.history.replacein_use( null, null, window.location.href );
-		}
-
-		function countDown() {
-
-			var seg = localStorage.getItem('segs');
-		  var min = localStorage.getItem('mins');
-
-			if ((seg == 0 && min == 0) || min < 0 || seg < 0 || is_null(min) || is_null(seg)) {
-				seg = 0;
-				min = 3;
-		  }
-
-		onTimer();
-
-		function onTimer() {
-			document.getElementById('timer').innerHTML = " • Tendrás que esperar <b>" + min + "m " + seg + "s</b> antes de que podamos enviarte otro.";
-			seg--;
-			if (seg < 0 && min == 0) {
-				localStorage.setItem('mins', 0);
-				localStorage.setItem('segs', 0);
-				window.location.href = "inicio";
-			}else {
-			   if (seg == -1){
-				 if (min > 0) {
-					min--;
-					seg = 59;
-				 }
-			    }
-
-			  setTimeout(onTimer, 1000);
-			  localStorage.setItem('mins', min);
-			  localStorage.setItem('segs', seg);
-			}
-		  }
-		}
-	</script>
-
-     </head>
+   </head>
 
 	<body background="/images/background.jpg">
 		
-		<div class="ocultar">
-			<b id="pop_up"></b>
-			<a id='pop-up' href="#pop_up" ></a>
+	    <div class="ocultar">
+		<b id="pop_up"></b>
+		<a id='pop-up' href="#pop_up" ></a>
 
-			<div class="popup">
-				<div>
-				   <h4>¡Hola!</h4>
-				   <p>Para cualquier problema relacionado con la aplicación, comunícate con el profesorado.</p>
-				   <a  href="" class="btn">cerrar</a>
-				</div>
-			</div>
+		<div class="popup">
+		   <div>
+		     <h4>¡Hola!</h4>
+		     <p>Para cualquier problema relacionado con la aplicación, comunícate con el profesorado.</p>
+		      <a  href="" class="btn">cerrar</a>
+		   </div>
 		</div>
+	     </div>
 		
-		<br><br><br>
-		<div id="header"></div>
-		<div class="container">
+	     <br><br><br>
+	     <div id="header"></div>
+	     <div class="container">
 
 		   <?php
 
@@ -259,20 +259,20 @@
 				  }
 			}
 
-			function userAccess($username, $conn) {
-				$init = mysqli_query($conn, "SELECT username FROM user WHERE username = '$username' AND verified = 'YES' ORDER BY username DESC");
-				if (!empty($init) && mysqli_num_rows($init) == 0) {
-						echo "<p style='margin-left: 2em; color:red'> <br><b>Todavía no has <u>verificado</u> tu cuenta.</b><br><br></p>";
-						echo "<br><b>¿No te llegó el e-mail de verificación?";
-						echo "<br><br>";
+		   function userAccess($username, $conn) {
+			$init = mysqli_query($conn, "SELECT username FROM user WHERE username = '$username' AND verified = 'YES' ORDER BY username DESC");
+			if (!empty($init) && mysqli_num_rows($init) == 0) {
+					echo "<p style='margin-left: 2em; color:red'> <br><b>Todavía no has <u>verificado</u> tu cuenta.</b><br><br></p>";
+					echo "<br><b>¿No te llegó el e-mail de verificación?";
+					echo "<br><br>";
 
-						echo "<form action='' method='post'>";
-						echo "<p style='margin-left: 2em' id='confirm'> </p>";
-						echo "<p id='timer' style='margin-left: 2em'>  • Click ";
-						echo "<input type='submit' style='background-color:transparent;border:none;color:red;overflow: hidden;text-decoration:underline;' name='button1' value='aquí'/>";
-						echo " para reenviártelo.</b><br>";
-						echo "</p>";
-						echo "</form>";
+					echo "<form action='' method='post'>";
+					echo "<p style='margin-left: 2em' id='confirm'> </p>";
+					echo "<p id='timer' style='margin-left: 2em'>  • Click ";
+					echo "<input type='submit' style='background-color:transparent;border:none;color:red;overflow: hidden;text-decoration:underline;' name='button1' value='aquí'/>";
+					echo " para reenviártelo.</b><br>";
+					echo "</p>";
+					echo "</form>";
 
 		?>
 
@@ -423,8 +423,6 @@
 			}
 		  }
 
-
-
 		}
 
 		function getRootDir() {
@@ -466,13 +464,13 @@
 							}
 							if ($flagExist){
 								echo "<form action='' method='post'>";
-												echo "<p style='margin-left: 2em'><b> ► $deviceName &nbsp;~</b>";
-												echo "<input style='background-color:red;' name='namedevice' value='$deviceName' hidden/>";
-												echo "&nbsp;&nbsp;&nbsp;&nbsp;<label style='padding-top: 8px;'>$description</label>";
-												echo "<br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;»&nbsp;&nbsp;<input type='submit' id='entrarCons$deviceName' class='large green button' name='enterConsole' value='Entrar a la Consola    '/>";
-												$int = $int + 1;
-											    if ((mysqli_num_rows($result)>1) && (mysqli_num_rows($result)>$int))
-														echo "<br><br><div class='dark'></div>";
+										echo "<p style='margin-left: 2em'><b> ► $deviceName &nbsp;~</b>";
+										echo "<input style='background-color:red;' name='namedevice' value='$deviceName' hidden/>";
+										echo "&nbsp;&nbsp;&nbsp;&nbsp;<label style='padding-top: 8px;'>$description</label>";
+										echo "<br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;»&nbsp;&nbsp;<input type='submit' id='entrarCons$deviceName' class='large green button' name='enterConsole' value='Entrar a la Consola    '/>";
+										$int = $int + 1;
+									    if ((mysqli_num_rows($result)>1) && (mysqli_num_rows($result)>$int))
+												echo "<br><br><div class='dark'></div>";
 								echo "</form><br>";
 							}
 					
@@ -597,7 +595,6 @@
 		?>
 
 		</div>
-
   </body>
 	
 <br><br><br><br>
