@@ -157,6 +157,6 @@
 
 </body>
 
-  <?php include "$root/web/footer.php"; ?>
+<?php include "$root/web/footer.php"; ?>
 
 </html>
