@@ -42,19 +42,20 @@
 <!doctype html>
 <html lang="es">
 
-	<head>
-		<title>Panel Admin ~ Usuarios Registrados</title>
+  <head>
+	  
+    <title>Panel Admin ~ Usuarios Registrados</title>
     <link rel="icon" type="image/png" href="/images/icon.png" />
     <?php include "$root/web/header.php"; ?>
 
-		<!-- Required meta tags -->
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-		<!-- CSS -->
+    <!-- CSS -->
     <link rel="stylesheet" href="../admin/css/admin.css">
     <link rel="stylesheet" href="../css/alerts.css">
-		<link rel="stylesheet" href="../css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
 
     <script>
 
@@ -66,20 +67,20 @@
 
   </head>
 
-	<body background="/images/background.jpg">
+  <body background="/images/background.jpg">
 
     <br>
     <nav class='menuHK container'><ul>
-    <li><a href="registered-users">Usuarios</a>|</li>
-    <li><a href="devices">Dispositivos</a>|</li>
-    <li><a href="logs">Logs</a>|</li>
-    <li><a href="assignments">Asignaciones Users/Devices</a>|</li>
-    <li><a href="reset-devices">Resetear Dispositivos</a></li>
+	    <li><a href="registered-users">Usuarios</a>|</li>
+	    <li><a href="devices">Dispositivos</a>|</li>
+	    <li><a href="logs">Logs</a>|</li>
+	    <li><a href="assignments">Asignaciones Users/Devices</a>|</li>
+	    <li><a href="reset-devices">Resetear Dispositivos</a></li>
     </ul></nav>
 
-		<div class="container">
-		  <div class='alert alert-success mt-4' role='alert'>
-						<FONT SIZE=4><i><p><a>Estos son todos los <u>usuarios registrados</u>.</a></p></i></font>
+    <div class="container">
+      <div class='alert alert-success mt-4' role='alert'>
+	  <FONT SIZE=4><i><p><a>Estos son todos los <u>usuarios registrados</u>.</a></p></i></font>
                 
                 <?php
                   // Connection info. file
@@ -146,16 +147,16 @@
                   mysqli_close($conn);
                 ?>
 
-              </p>
+           </p>
       </div>
-		</div>
-	</body>
+    </div>
+  </body>
 
-  <nav class='menuNew container'><ul>
+ <nav class='menuNew container'><ul>
     <li><a href="user-groups">Administrar Grupos de Users</a></li>
     </ul>
-  </nav>
+ </nav>
 
-  <?php include "$root/web/footer.php"; ?>
+ <?php include "$root/web/footer.php"; ?>
   
 </html>
