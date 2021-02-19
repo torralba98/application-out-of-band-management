@@ -41,17 +41,17 @@
 
 <!doctype html>
 <html lang="es">
-	<head>
+  <head>
 
-		<title>Panel Admin ~ Grupos de Usuarios Existentes</title>
+    <title>Panel Admin ~ Grupos de Usuarios Existentes</title>
     <link rel="icon" type="image/png" href="/images/icon.png" />
     <?php include "$root/web/header.php"; ?>
 
-		<!-- Required meta tags -->
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-		<!-- CSS -->
+    <!-- CSS -->
     <link rel="stylesheet" href="../admin/css/admin.css">
     <link rel="stylesheet" href="../css/alerts.css">
     <link rel="stylesheet" href="../css/bootstrap.min.css">
@@ -66,22 +66,22 @@
       
   </head>
 
-	<body background="/images/background.jpg">
+  <body background="/images/background.jpg">
 
     <br>
     <nav class='menuHK container'><ul>
-    <li><a href="registered-users">Usuarios</a>|</li>
-    <li><a href="devices">Dispositivos</a>|</li>
-    <li><a href="logs">Logs</a>|</li>
-    <li><a href="assignments">Asignaciones Users/Devices</a>|</li>
-    <li><a href="reset-devices">Resetear Dispositivos</a></li>
+	    <li><a href="registered-users">Usuarios</a>|</li>
+	    <li><a href="devices">Dispositivos</a>|</li>
+	    <li><a href="logs">Logs</a>|</li>
+	    <li><a href="assignments">Asignaciones Users/Devices</a>|</li>
+	    <li><a href="reset-devices">Resetear Dispositivos</a></li>
     </ul></nav>
 
-		<div class="container">
+    <div class="container">
 
-		  <div class='alert alert-success mt-4' role='alert'>
-          <div><a id='volver' href='user-groups' class='large green button'>Volver</a></div>
-						<FONT SIZE=4><i><p><a>Aquí podrás ver un <u>resumen</u> de la distribución en <u>grupos</u> de todos los usuarios registrados.</a></p></i></font>
+     <div class='alert alert-success mt-4' role='alert'>
+       <div><a id='volver' href='user-groups' class='large green button'>Volver</a></div>
+       <FONT SIZE=4><i><p><a>Aquí podrás ver un <u>resumen</u> de la distribución en <u>grupos</u> de todos los usuarios registrados.</a></p></i></font>
                 
                 <?php
                   // Connection info. file
@@ -112,7 +112,7 @@
                     while ($row = mysqli_fetch_array($result)) {
                       printf("<p style='margin-left: 2em'> • %s</p>", $row[0]);
                     }
-                }
+                  }
                 ?>
 
                 </select>
@@ -124,9 +124,9 @@
                 ?>
           </p>
       </div>
-		</div>
-	</body>
+    </div>
+  </body>
 
-  <?php include "$root/web/footer.php"; ?>
+<?php include "$root/web/footer.php"; ?>
 
 </html>
